@@ -1,57 +1,44 @@
-# servicemix
+# Karaf
 
 #### Table of Contents
 
 1. [Description](#description)
-1. [Setup - The basics of getting started with servicemix](#setup)
-    * [What servicemix affects](#what-servicemix-affects)
+2. [Setup](#setup)
+    * [The module manages the following](#the-module-manages-the-following)
     * [Setup requirements](#setup-requirements)
-    * [Beginning with servicemix](#beginning-with-servicemix)
-1. [Usage - Configuration options and additional functionality](#usage)
-1. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-1. [Limitations - OS compatibility, etc.](#limitations)
-1. [Development - Guide for contributing to the module](#development)
+    * [Beginning with karaf](#beginning-with-karaf)
+3. [Usage - Configuration options and additional functionality](#usage)
+4. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
+5. [Limitations - OS compatibility, etc.](#limitations)
+6. [Development - Guide for contributing to the module](#development)
 
 ## Description
 
-Start with a one- or two-sentence summary of what the module does and/or what
-problem it solves. This is your 30-second elevator pitch for your module.
-Consider including OS/Puppet version it works with.
+This module sets up Karaf instances.
 
-You can give more descriptive information in a second paragraph. This paragraph
-should answer the questions: "What does this module *do*?" and "Why would I use
-it?" If your module has a range of functionality (installation, configuration,
-management, etc.), this is the time to mention it.
+This module has been tested on Karaf 4.0.8.
 
 ## Setup
 
-### What servicemix affects **OPTIONAL**
+### The module manages the following
 
-If it's obvious what your module touches, you can skip this section. For
-example, folks can probably figure out that your mysql_instance module affects
-their MySQL instances.
+* Download or copy and extract karaf zip file
+* Configure karaf
+* Install karaf as a service
 
-If there's more that they should know about, though, this is the place to mention:
+### Setup requirements
 
-* A list of files, packages, services, or operations that the module will alter,
-  impact, or execute.
-* Dependencies that your module automatically installs.
-* Warnings or other important notices.
+* puppetlabs-java for Java installation
 
-### Setup Requirements **OPTIONAL**
 
-If your module requires anything extra before setting up (pluginsync enabled,
-etc.), mention it here.
+### Beginning with karaf
 
-If your most recent release breaks compatibility or requires particular steps
-for upgrading, you might want to include an additional "Upgrading" section
-here.
+Declare the top-level `elasticsearch` class (managing repositories) and set up an instance:
 
-### Beginning with servicemix
-
-The very basic steps needed for a user to get the module up and running. This
-can include setup steps, if necessary, or it can be an example of the most
-basic use of the module.
+```puppet
+class { 'karaf':
+}
+```
 
 ## Usage
 
