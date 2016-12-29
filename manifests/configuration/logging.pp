@@ -5,8 +5,8 @@ class karaf::configuration::logging inherits karaf {
   file { "${rootdir}/karaf/etc/org.ops4j.pax.logging.cfg":
     ensure  => present,
     source => [
-      "puppet:///modules/karaf/karaf/etc/org.ops4j.pax.logging.cfg",
-      "puppet:///modules/karaf/karaf/etc/org.ops4j.pax.logging.cfg.default"
+      "puppet:///modules/${caller_module_name}/karaf/etc/org.ops4j.pax.logging.cfg",
+      "puppet:///modules/${caller_module_name}/karaf/etc/org.ops4j.pax.logging.cfg.default"
     ],
   }
 }
