@@ -34,7 +34,8 @@ class karaf::install inherits karaf {
     }
 
     $unzip_require = File[ "${rootdir}/${karaf_file_name}.zip" ]
-  } elsif ($install_from == 'web') {
+  } else {
+    notify {"Download from web":}
     exec { 'donwload_karaf':
       command => "/usr/bin/wget -q ${karaf_zip_url} -P ${rootdir}/",
       creates  => "${rootdir}/${karaf_file_name}.zip",

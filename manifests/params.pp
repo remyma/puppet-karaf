@@ -14,7 +14,7 @@ class karaf::params {
   $install_from       = 'web'
 
   # url to download karaf in case install is done from the web
-  $karaf_zip_url = 'http://mirrors.ircam.fr/pub/apache/karaf/${version}/apache-karaf-${version}.zip'
+  $karaf_zip_url = "http://mirrors.ircam.fr/pub/apache/karaf/${version}/apache-karaf-${version}.zip"
 
   # name of zip file to be placed in files directory in case install is done from file
   $karaf_file_name    = "apache-karaf-${version}"
