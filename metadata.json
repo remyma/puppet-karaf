@@ -1,0 +1,24 @@
+{
+  "name": "marem-karaf",
+  "version": "0.1.0",
+  "author": "marem",
+  "summary": "Install and configure karaf",
+  "license": "Apache-2.0",
+  "source": "",
+  "project_page": null,
+  "issues_url": null,
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "7"
+      ]
+    }
+  ],
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
+    {"name":"puppetlabs-java","version_requirement":">= 1.6.0"}
+  ],
+  "data_provider": null
+}
+
