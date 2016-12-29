@@ -5,7 +5,6 @@ class karaf::install inherits karaf {
   # ---------------------------------------------
   package { 'unzip':
     ensure => 'installed',
-    #require => Class['iass_spacewalk']
   }
 
   # ---------------------------------------------
@@ -28,37 +27,31 @@ class karaf::install inherits karaf {
   # ---------------------------------------------
   # Deploy karaf zip package.
   # ---------------------------------------------
-  $karaf_filename = "apache-karaf-${version}"
   if ($install_from == 'file') {
-    file { "/tmp/${karaf_filename}.zip":
+    file { "/${rootdir}/${karaf_file_name}.zip":
       ensure => present,
-      source => "puppet:///modules/karaf/${karaf_filename}.zip"
+      source => "puppet:///modules/karaf/${karaf_file_name}.zip"
     }
 
-    $unzip_require = File[ "/tmp/${karaf_filename}.zip" ]
+    $unzip_require = File[ "${rootdir}/${karaf_file_name}.zip" ]
   } elsif ($install_from == 'web') {
-    require iaas_spacewalk
-    $url = "${::iaas_spacewalk::params::cdn}/karaf/${karaf_filename}.zip"
-
-    #$url = "http://apache.crihan.fr/dist/karaf/karaf-6/6.1.3/apache-karaf-6.1.3.zip"
-
-    exec { 'retrieve_karaf':
-      command => "/usr/bin/wget -q ${url} -P /tmp/",
-      unless  => "/usr/bin/test -f /tmp/${karaf_filename}.zip",
+    exec { 'donwload_karaf':
+      command => "/usr/bin/wget -q ${karaf_zip_url} -P ${rootdir}/",
+      creates  => "${rootdir}/${karaf_file_name}.zip",
       timeout => 1000
     }
 
-    $unzip_require = Exec['retrieve_karaf']
+    $unzip_require = Exec['donwload_karaf']
   }
 
   exec {'unzip karaf package':
-    unless  => "/usr/bin/test -d ${rootdir}/${karaf_filename}",
+    unless  => "/usr/bin/test -d ${rootdir}/${karaf_file_name}",
     cwd     => "/home/${service_user_name}",
-    command => "/usr/bin/unzip /tmp/${karaf_filename}.zip -d ${rootdir}",
-    require => [ $unzip_require, Package['unzip'] ]
+    command => "/usr/bin/unzip ${rootdir}/${karaf_file_name}.zip -d ${rootdir}",
+    require => [ $unzip_require ]
   }
 
-  file { "${rootdir}/${karaf_filename}/":
+  file { "${rootdir}/${karaf_file_name}/":
     owner   => $service_user_name,
     group   => $service_group_name,
     recurse => true
@@ -66,7 +59,7 @@ class karaf::install inherits karaf {
 
   file { "${rootdir}/karaf":
     ensure  => 'link',
-    target  => "${rootdir}/${karaf_filename}/",
+    target  => "${rootdir}/${karaf_file_name}/",
     owner   => $service_user_name,
     group   => $service_group_name,
   }

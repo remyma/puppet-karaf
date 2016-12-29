@@ -1,16 +1,18 @@
 # Class: karaf
 # ===========================
 #
-# Full description of class karaf here.
+# This class is able to install and configure a karaf instance as a service on a node.
 #
 # Parameters
 # ----------
 #
 # Document parameters here.
 #
-# * `sample parameter`
-# Explanation of what this parameter affects and what it defaults to.
-# e.g. "Specify one or more upstream ntp servers as an array."
+# * `version`
+# String. Directory path where kara will be installed.
+#
+# * `rootdir`
+# String. Karaf version to install (eg. 4.0.8).
 #
 # Variables
 # ----------
@@ -35,7 +37,7 @@
 # Authors
 # -------
 #
-# Author Name <remy.matthieu@gmail.com>
+# Matthieu Rémy <remy.matthieu@gmail.com>
 #
 # Copyright
 # ---------
@@ -46,6 +48,8 @@ class karaf(
   $version                  = $karaf::params::version,
   $rootdir                  = $karaf::params::rootdir,
   $install_from             = $karaf::params::install_from,
+  $karaf_file_name          = $karaf::params::karaf_file_name,
+  $karaf_zip_url            = $karaf::params::karaf_zip_url,
   $service_user_name        = $karaf::params::service_user_name,
   $service_group_name       = $karaf::params::service_group_name,
   $java_home                = $karaf::params::java_home,
@@ -59,6 +63,6 @@ class karaf(
   $karaf_activemq_password  = $karaf::params::karaf_activemq_password,
 ) inherits karaf::params {
   include karaf::install
-  include karaf::configuration
+  #include karaf::configuration
   include karaf::service
 }
