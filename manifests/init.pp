@@ -56,11 +56,8 @@ class karaf(
   $karaf_ssh_host           = $karaf::params::karaf_ssh_host,
   $karaf_ssh_port           = $karaf::params::karaf_ssh_port,
   $karaf_ssh_user           = $karaf::params::karaf_ssh_user,
-  $karaf_activemq_name      = $karaf::params::karaf_activemq_name,
-  $karaf_activemq_port      = $karaf::params::karaf_activemq_port,
-  $karaf_activemq_host      = $karaf::params::karaf_activemq_host,
-  $karaf_activemq_user      = $karaf::params::karaf_activemq_user,
-  $karaf_activemq_password  = $karaf::params::karaf_activemq_password,
+  $file_maven_settings      = $karaf::params::file_maven_settings,
+  $file_karaf_logging       = $karaf::params::file_karaf_logging,
 ) inherits karaf::params {
   include karaf::install
   include karaf::configuration

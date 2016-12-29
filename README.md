@@ -33,7 +33,7 @@ This module has been tested on Karaf 4.0.8.
 
 ### Beginning with karaf
 
-Declare the top-level `elasticsearch` class (managing repositories) and set up an instance:
+Declare the top-level `karaf` class (managing repositories) and set up an instance:
 
 ```puppet
 class { 'karaf':

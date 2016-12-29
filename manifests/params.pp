@@ -46,13 +46,10 @@ class karaf::params {
   $karaf_ssh_user     = 'karaf'
 
   # --------------------------------
-  # Karaf Activemq properties.
+  # Override source files
   # --------------------------------
-  $karaf_activemq_name      = 'amq-broker'
-  $karaf_activemq_port      = '61616'
-  $karaf_activemq_host      = 'localhost'
-  $karaf_activemq_user      = 'smx'
-  $karaf_activemq_password  = 'smx'
+  $file_maven_settings = "puppet:///modules/karaf/maven/settings.xml"
+  $file_karaf_logging  = "puppet:///modules/karaf/karaf/etc/org.ops4j.pax.logging.cfg"
 
   # ----------------------------------
   # Karaf Features and repo management.

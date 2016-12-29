@@ -14,8 +14,7 @@ class karaf::configuration::maven inherits karaf {
   file { "/home/${service_user_name}/.m2/settings.xml":
     ensure => present,
     source => [
-      "puppet:///modules/${caller_module_name}/maven/settings.xml",
-      "puppet:///modules/${caller_module_name}/maven/settings.xml.default"
+      $file_maven_settings
     ],
     owner   => $service_user_name,
     group   => $service_group_name,
