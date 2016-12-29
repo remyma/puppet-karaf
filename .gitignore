@@ -10,4 +10,4 @@ Gemfile.lock
 /spec/fixtures/manifests
 /spec/fixtures/vendor
 
-files/*
+files/karaf/dist/*
