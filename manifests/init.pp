@@ -63,6 +63,6 @@ class karaf(
   $karaf_activemq_password  = $karaf::params::karaf_activemq_password,
 ) inherits karaf::params {
   include karaf::install
-  #include karaf::configuration
+  include karaf::configuration
   include karaf::service
 }

@@ -30,12 +30,11 @@ class karaf::install inherits karaf {
   if ($install_from == 'file') {
     file { "/${rootdir}/${karaf_file_name}.zip":
       ensure => present,
-      source => "puppet:///modules/karaf/${karaf_file_name}.zip"
+      source => "puppet:///modules/karaf/karaf/dist/${karaf_file_name}.zip"
     }
 
     $unzip_require = File[ "${rootdir}/${karaf_file_name}.zip" ]
   } else {
-    notify {"Download from web":}
     exec { 'donwload_karaf':
       command => "/usr/bin/wget -q ${karaf_zip_url} -P ${rootdir}/",
       creates  => "${rootdir}/${karaf_file_name}.zip",
