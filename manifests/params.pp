@@ -34,6 +34,11 @@ class karaf::params {
   $java_home          = '/usr/lib/jvm/java-1.8.0-openjdk'
 
   # --------------------------------
+  # Environnment variables
+  # --------------------------------
+  $default_env_vars   = []
+
+  # --------------------------------
   # Karaf variables.
   # --------------------------------
   $karaf_http_port    = 8181
@@ -55,4 +60,6 @@ class karaf::params {
   # Karaf Features and repo management.
   # ----------------------------------
   $karaf_additional_repos   = []
+  $karaf_startup_feature_repos = []
+  $karaf_startup_feature_boots = []
 }

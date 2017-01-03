@@ -3,7 +3,6 @@ Description=Starts and stops karaf instance on this system
 
 [Service]
 Type=forking
-EnvironmentFile=/etc/sysconfig/karaf
 User=<%= @service_user_name %>
 Group=<%= @service_group_name %>
 ExecStart=<%= @rootdir %>/karaf/bin/start

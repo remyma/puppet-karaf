@@ -51,7 +51,10 @@ featuresBoot = \
     wrap, \
     bundle, \
     config, \
-    kar
+    kar<%= ', \\' if @karaf_startup_feature_boots.size > 0 %>
+    <% @karaf_startup_feature_boots.each_with_index do |feature, i| -%>
+    <%= feature %><%= ', \\' if i < (@karaf_startup_feature_boots.size - 1) %>
+    <% end -%>
 
 #
 # Resource repositories (OBR) that the features resolver can use

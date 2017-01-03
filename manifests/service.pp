@@ -1,12 +1,4 @@
 class karaf::service inherits karaf {
-  $default_env_vars = {
-    'JAVA_HOME' => $karaf::java_home,
-  }
-
-  file { '/etc/sysconfig/karaf':
-    ensure  => file,
-    content => template("karaf/etc/sysconfig/karaf.erb"),
-  }
 
   file { '/lib/systemd/system/karaf.service':
     ensure  => file,

@@ -45,19 +45,24 @@
 # Copyright 2016 Matthieu Rémy.
 #
 class karaf(
-  $version                  = $karaf::params::version,
-  $rootdir                  = $karaf::params::rootdir,
-  $install_from             = $karaf::params::install_from,
-  $karaf_file_name          = $karaf::params::karaf_file_name,
-  $karaf_zip_url            = $karaf::params::karaf_zip_url,
-  $service_user_name        = $karaf::params::service_user_name,
-  $service_group_name       = $karaf::params::service_group_name,
-  $java_home                = $karaf::params::java_home,
-  $karaf_ssh_host           = $karaf::params::karaf_ssh_host,
-  $karaf_ssh_port           = $karaf::params::karaf_ssh_port,
-  $karaf_ssh_user           = $karaf::params::karaf_ssh_user,
-  $file_maven_settings      = $karaf::params::file_maven_settings,
-  $file_karaf_logging       = $karaf::params::file_karaf_logging,
+  $version                      = $karaf::params::version,
+  $rootdir                      = $karaf::params::rootdir,
+  $install_from                 = $karaf::params::install_from,
+  $karaf_file_name              = $karaf::params::karaf_file_name,
+  $karaf_zip_url                = $karaf::params::karaf_zip_url,
+  $service_user_name            = $karaf::params::service_user_name,
+  $service_user_id              = $karaf::params::service_user_id,
+  $service_group_name           = $karaf::params::service_group_name,
+  $service_group_id             = $karaf::params::service_group_id,
+  $java_home                    = $karaf::params::java_home,
+  $default_env_vars             = $karaf::params::default_env_vars,
+  $karaf_ssh_host               = $karaf::params::karaf_ssh_host,
+  $karaf_ssh_port               = $karaf::params::karaf_ssh_port,
+  $karaf_ssh_user               = $karaf::params::karaf_ssh_user,
+  $karaf_startup_feature_repos  = $karaf::params::karaf_startup_feature_repos,
+  $karaf_startup_feature_boots  = $karaf::params::karaf_startup_feature_boots,
+  $file_maven_settings          = $karaf::params::file_maven_settings,
+  $file_karaf_logging           = $karaf::params::file_karaf_logging,
 ) inherits karaf::params {
   include karaf::install
   include karaf::configuration
