@@ -6,33 +6,89 @@
 # Parameters
 # ----------
 #
-# Document parameters here.
-#
 # * `version`
 # String. Directory path where kara will be installed.
 #
 # * `rootdir`
 # String. Karaf version to install (eg. 4.0.8).
 #
-# Variables
-# ----------
+# * `install_from`
+# String. 'web' or 'file'. If web, zip package is retrieved from url.
+# If not, zip package has to be provided in module files/karaf/dist directory.
 #
-# Here you should define a list of variables that this module would require.
+# * `karaf_file_name`
+# String. name of karaf directory when unzipped.
 #
-# * `sample variable`
-#  Explanation of how this variable affects the function of this class and if
-#  it has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#  External Node Classifier as a comma separated list of hostnames." (Note,
-#  global variables should be avoided in favor of class parameters as
-#  of Puppet 2.6.)
+# * `karaf_zip_url`
+# String. Url of karaf zip. Used id `install_from` web
+#
+# * `service_user_name`
+# String. User name of user to run karaf
+#
+# * `service_user_id`
+# String. User id of user to run karaf
+#
+# * `service_group_name`
+# String. Group name of user to run karaf
+#
+# * `service_group_id`
+# String. Group id of user to run karaf
+#
+# * `java_home`
+# String. java home
+#
+# * `default_env_vars`
+# Array. Environment variables used in setenv.sh file.
+# Example :
+# default_env_vars      => {
+#    'JAVA_MIN_MEM'  => '256M'
+# }
+#
+# * `karaf_ssh_host`
+# String. ssh host to connect to karaf console.
+#
+# * `karaf_ssh_port`
+# String. ssh port to connect to karaf console.
+#
+# * `karaf_ssh_user`
+# String. ssh user to connect to karaf console.
+#
+# * `karaf_custom_properties`
+# Array. custom properties to extand karaf properties in etc/custom.properties file.
+#
+# * `karaf_startup_feature_repos`
+# Array. List of repos to declare at karaf startup.
+#
+# * `karaf_startup_feature_boots`
+# Array. List of features to automatically start on karf boot.
+#
+# * `file_maven_settings`
+# String. Path of file to override maven settings.
+#
+# * `file_karaf_logging`
+# String. Path of file to override karaf logging.
 #
 # Examples
 # --------
 #
-# @example
-#    class { 'karaf':
-#      servers => [ 'pool.ntp.org', 'ntp.local.company.com' ],
-#    }
+# * Installation, make sure service is running and will be started at boot time :
+#       class { 'karaf': }
+#
+# * Installation, with startup repos and features
+#      class { 'karaf':
+#           karaf_startup_feature_repos => ['mvn:org.apache.camel.karaf/apache-camel/2.18.1/xml/features'],
+#           karaf_startup_feature_boots => ['jndi', 'jms', 'camel', 'camel-swagger', 'camel-jms']
+#       }
+#
+# * Installation, override logging configuration:
+#      class { 'karaf':
+#           file_karaf_logging    => 'puppet:///modules/karaf_is/karaf/etc/org.ops4j.pax.logging.cfg'
+#       }
+#
+# * Installation, override maven settings:
+#      class { 'karaf':
+#           file_maven_settings   => 'puppet:///modules/karaf_is/maven/settings.xml'
+#       }
 #
 # Authors
 # -------
