@@ -1,7 +1,7 @@
 {
-  "name": "marem-karaf",
+  "name": "remyma-karaf",
   "version": "0.1.0",
-  "author": "marem",
+  "author": "remyma",
   "summary": "Install and configure karaf",
   "license": "Apache-2.0",
   "source": "",
