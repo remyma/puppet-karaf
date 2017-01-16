@@ -4,7 +4,7 @@
   "author": "remyma",
   "summary": "Install and configure karaf",
   "license": "Apache-2.0",
-  "source": "",
+  "source": "https://github.com/remyma/puppet-karaf",
   "project_page": null,
   "issues_url": null,
   "operatingsystem_support": [

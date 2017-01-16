@@ -8,9 +8,6 @@
     * [Setup requirements](#setup-requirements)
     * [Beginning with karaf](#beginning-with-karaf)
 3. [Usage - Configuration options and additional functionality](#usage)
-4. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
-5. [Limitations - OS compatibility, etc.](#limitations)
-6. [Development - Guide for contributing to the module](#development)
 
 ## Description
 
@@ -42,29 +39,34 @@ class { 'karaf':
 
 ## Usage
 
-This section is where you describe how to customize, configure, and do the
-fancy stuff with your module here. It's especially helpful if you include usage
-examples and code samples for doing things with your module.
+* Installation, make sure service is running and will be started at boot time :
 
-## Reference
+```puppet
+class { 'karaf':
+}
+```
 
-Here, include a complete list of your module's classes, types, providers,
-facts, along with the parameters for each. Users refer to this section (thus
-the name "Reference") to find specific details; most users don't read it per
-se.
+* You can specify repos to be added on karaf startup, as well as features to start during karaf boot
 
-## Limitations
+```puppet
+      class { 'karaf':
+           karaf_startup_feature_repos => ['mvn:org.apache.camel.karaf/apache-camel/2.18.1/xml/features'],
+           karaf_startup_feature_boots => ['jndi', 'jms', 'camel', 'camel-swagger', 'camel-jms']
+       }
+```
 
-This is where you list OS compatibility, version compatibility, etc. If there
-are Known Issues, you might want to include them under their own heading here.
+* You can override karaf default logging configuration file:
 
-## Development
+```puppet
+      class { 'karaf':
+           file_karaf_logging    => 'puppet:///modules/karaf_is/karaf/etc/org.ops4j.pax.logging.cfg'
+       }
+```
 
-Since your module is awesome, other users will want to play with it. Let them
-know what the ground rules for contributing are.
-
-## Release Notes/Contributors/Etc. **Optional**
-
-If you aren't using changelog, put your release notes here (though you should
-consider using changelog). You can also add any additional sections you feel
-are necessary or important to include here. Please use the `## ` header.
+* If you need to update your maven settings (for instance if karaf needs to retrieve maven dependencies from nexus), you can override maven settings:
+      
+```puppet
+      class { 'karaf':
+           file_maven_settings   => 'puppet:///modules/karaf_is/maven/settings.xml'
+       }
+```
