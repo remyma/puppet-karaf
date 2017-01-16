@@ -30,7 +30,9 @@ class karaf::install inherits karaf {
   if ($install_from == 'file') {
     file { "/${rootdir}/${karaf_file_name}.zip":
       ensure => present,
-      source => "puppet:///modules/${caller_module_name}/karaf/dist/${karaf_file_name}.zip"
+      source => "puppet:///modules/${caller_module_name}/karaf/dist/${karaf_file_name}.zip",
+      owner   => $service_user_name,
+      group   => $service_group_name
     }
 
     $unzip_require = File[ "${rootdir}/${karaf_file_name}.zip" ]

@@ -7,5 +7,7 @@ class karaf::configuration::logging inherits karaf {
     source => [
       $file_karaf_logging
     ],
+    owner   => $service_user_name,
+    group   => $service_group_name
   }
 }

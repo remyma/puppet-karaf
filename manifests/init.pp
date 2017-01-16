@@ -59,6 +59,7 @@ class karaf(
   $karaf_ssh_host               = $karaf::params::karaf_ssh_host,
   $karaf_ssh_port               = $karaf::params::karaf_ssh_port,
   $karaf_ssh_user               = $karaf::params::karaf_ssh_user,
+  $karaf_custom_properties      = $karaf::params::karaf_custom_properties,
   $karaf_startup_feature_repos  = $karaf::params::karaf_startup_feature_repos,
   $karaf_startup_feature_boots  = $karaf::params::karaf_startup_feature_boots,
   $file_maven_settings          = $karaf::params::file_maven_settings,

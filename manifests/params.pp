@@ -39,13 +39,14 @@ class karaf::params {
   $default_env_vars   = []
 
   # --------------------------------
-  # Karaf variables.
+  # Karaf custom properties.
   # --------------------------------
-  $karaf_http_port    = 8181
+  $karaf_custom_properties = []
 
   # --------------------------------
-  # Karaf shell config variables.
+  # Karaf system properties.
   # --------------------------------
+  $karaf_http_port    = 8181
   $karaf_ssh_host     = '0.0.0.0'
   $karaf_ssh_port     = 8101
   $karaf_ssh_user     = 'karaf'
@@ -62,4 +63,5 @@ class karaf::params {
   $karaf_additional_repos   = []
   $karaf_startup_feature_repos = []
   $karaf_startup_feature_boots = []
+
 }
