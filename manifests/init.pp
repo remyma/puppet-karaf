@@ -62,6 +62,10 @@
 # * `karaf_startup_feature_boots`
 # Array. List of features to automatically start on karf boot.
 #
+# * `mvn_repositories`
+# String. Maven repositories to override the ones in ${karaf.home}/etc/org.ops4j.pax.url.mvn.cfg file
+# under org.ops4j.pax.url.mvn.repositories property.
+#
 # * `file_maven_settings`
 # String. Path of file to override maven settings.
 #
@@ -118,6 +122,7 @@ class karaf(
   $karaf_custom_properties      = $karaf::params::karaf_custom_properties,
   $karaf_startup_feature_repos  = $karaf::params::karaf_startup_feature_repos,
   $karaf_startup_feature_boots  = $karaf::params::karaf_startup_feature_boots,
+  $mvn_repositories             = $karaf::params::mvn_repositories,
   $file_maven_settings          = $karaf::params::file_maven_settings,
   $file_karaf_logging           = $karaf::params::file_karaf_logging,
 ) inherits karaf::params {
