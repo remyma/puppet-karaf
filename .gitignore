@@ -11,3 +11,5 @@ Gemfile.lock
 /spec/fixtures/vendor
 
 files/karaf/dist/*
+.kitchen/
+.kitchen.local.yml
