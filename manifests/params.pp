@@ -7,14 +7,14 @@ class karaf::params {
   $rootdir            = '/opt'
 
   # Default karaf version to install
-  $version            = '4.0.8'
+  $version            = '4.0.9'
 
   # Value could be 'web' or 'file'. Choose if karaf should be installed from web
   # or from file. If file, please provide zip archive in files directory.
   $install_from       = 'web'
 
   # url to download karaf in case install is done from the web
-  $karaf_zip_url = "http://mirrors.ircam.fr/pub/apache/karaf/${version}/apache-karaf-${version}.zip"
+  $karaf_zip_url = "http://apache.mediamirrors.org/karaf/${version}/apache-karaf-${version}.zip"
 
   # name of zip file to be placed in files directory in case install is done from file
   $karaf_file_name    = "apache-karaf-${version}"
