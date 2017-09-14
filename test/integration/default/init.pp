@@ -1,1 +1,2 @@
-class { karaf: }
+class { 'java': }
+class { 'karaf': }
