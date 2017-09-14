@@ -13,3 +13,8 @@ Gemfile.lock
 files/karaf/dist/*
 .kitchen/
 .kitchen.local.yml
+
+Puppetfile.lock
+.librarian
+.tmp
+modules

@@ -10,6 +10,7 @@ gem 'rspec-puppet'
 gem "test-kitchen"
 gem "kitchen-puppet"
 gem "kitchen-docker"
+gem "librarian-puppet"
 
 # rspec must be v2 for ruby 1.8.7
 if RUBY_VERSION >= '1.8.7' && RUBY_VERSION < '1.9'
