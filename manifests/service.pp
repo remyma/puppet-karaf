@@ -1,26 +1,32 @@
-class karaf::service inherits karaf {
+# Definition: karaf::service
+define karaf::service(
+  $rootdir            = undef,
+  $service_user_name  = undef,
+  $service_group_name = undef,
+) {
 
-  file { '/lib/systemd/system/karaf.service':
+  $service_name = "karaf-${name}"
+
+  file { "/lib/systemd/system/${service_name}.service":
     ensure  => file,
-    content => template("karaf/etc/systemd/karaf.systemd.erb"),
+    content => template('karaf/etc/systemd/karaf.systemd.erb'),
   }
 
-  $notify_service = Exec["systemd_reload_karaf"]
+  $notify_service = Exec["${name}-systemd_reload_karaf"]
 
-
-  exec { "systemd_reload_karaf":
+  exec { "${name}-systemd_reload_karaf":
     command     => '/bin/systemctl daemon-reload',
     refreshonly => true,
   }
 
   # action
-  service { "service-karaf":
+  service { "service-${service_name}":
     ensure     => 'running',
     enable     => true,
-    name       => "karaf.service",
+    name       => "${service_name}.service",
     hasstatus  => true,
     hasrestart => true,
-    pattern    => $karaf::params::service_name,
+    pattern    => $service_name,
     provider   => 'systemd',
     notify     => $notify_service,
   }

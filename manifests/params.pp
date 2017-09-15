@@ -54,21 +54,21 @@ class karaf::params {
   # --------------------------------
   # Logging
   # --------------------------------
-  $file_karaf_logging  = "puppet:///modules/karaf/karaf/etc/org.ops4j.pax.logging.cfg"
+  $file_karaf_logging  = 'puppet:///modules/karaf/karaf/etc/org.ops4j.pax.logging.cfg'
 
   # --------------------------------
   # Maven settings
   # --------------------------------
-  $file_maven_settings = "puppet:///modules/karaf/maven/settings.xml"
+  $file_maven_settings = 'puppet:///modules/karaf/maven/settings.xml'
   $mvn_repositories = [
-    "http://repo1.maven.org/maven2@id=central",
-    "http://repository.springsource.com/maven/bundles/release@id=spring.ebr.release",
-    "http://repository.springsource.com/maven/bundles/external@id=spring.ebr.external",
-    "http://zodiac.springsource.com/maven/bundles/release@id=gemini",
-    "http://repository.apache.org/content/groups/snapshots-group@id=apache@snapshots@noreleases",
-    "https://oss.sonatype.org/content/repositories/snapshots@id=sonatype.snapshots.deploy@snapshots@noreleases",
-    "https://oss.sonatype.org/content/repositories/ops4j-snapshots@id=ops4j.sonatype.snapshots.deploy@snapshots@noreleases",
-    "http://repository.springsource.com/maven/bundles/external@id=spring-ebr-repository@snapshots@noreleases"
+    'http://repo1.maven.org/maven2@id=central',
+    'http://repository.springsource.com/maven/bundles/release@id=spring.ebr.release',
+    'http://repository.springsource.com/maven/bundles/external@id=spring.ebr.external',
+    'http://zodiac.springsource.com/maven/bundles/release@id=gemini',
+    'http://repository.apache.org/content/groups/snapshots-group@id=apache@snapshots@noreleases',
+    'https://oss.sonatype.org/content/repositories/snapshots@id=sonatype.snapshots.deploy@snapshots@noreleases',
+    'https://oss.sonatype.org/content/repositories/ops4j-snapshots@id=ops4j.sonatype.snapshots.deploy@snapshots@noreleases',
+    'http://repository.springsource.com/maven/bundles/external@id=spring-ebr-repository@snapshots@noreleases'
   ]
 
   # ----------------------------------
@@ -77,5 +77,13 @@ class karaf::params {
   $karaf_additional_repos   = []
   $karaf_startup_feature_repos = []
   $karaf_startup_feature_boots = []
+
+  # ----------------------------------
+  # Karaf Rmi.
+  # ----------------------------------
+  $karaf_rmi_registry_host = '0.0.0.0'
+  $karaf_rmi_registry_port = 1099
+  $karaf_rmi_server_host = '0.0.0.0'
+  $karaf_rmi_server_port = 44444
 
 }

@@ -126,7 +126,11 @@ class karaf(
   $file_maven_settings          = $karaf::params::file_maven_settings,
   $file_karaf_logging           = $karaf::params::file_karaf_logging,
 ) inherits karaf::params {
-  include karaf::install
-  include karaf::configuration
-  include karaf::service
+
+  # ---------------------------------------------
+  # Install dependencies.
+  # ---------------------------------------------
+  package { 'unzip': ensure => 'installed' }
+  package { 'wget': ensure => 'installed' }
+
 }
