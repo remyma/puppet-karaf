@@ -19,5 +19,5 @@ platforms:
   - name: centos-7.2
 
 suites:
-  - name: default
-    manifest: defaut/init.pp
+  - name: multiple-instances
+    manifest: multiple-instances/init.pp
