@@ -83,7 +83,7 @@ karaf::instance { 'instance1':
 
 ### How to manage multiple karaf instances
 
-```
+```puppet
 class { '::karaf': }
 
 karaf::instance { 'instance1':
