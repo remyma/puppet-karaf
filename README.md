@@ -1,6 +1,6 @@
 # Karaf
 
-[![Build Status](https://travis-ci.org/remyma/puppet-karaf/.svg?branch=master)](https://travis-ci.org/remyma/puppet-karaf)
+[![Build Status](https://travis-ci.org/remyma/puppet-karaf.svg?branch=master)](https://travis-ci.org/remyma/puppet-karaf)
 
 
 #### Table of Contents
