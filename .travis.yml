@@ -12,15 +12,8 @@ rvm:
   - 2.3.1
 script:
   - kitchen test
-#  - puppet-lint --no-autoloader_layout-check manifests/*.pp
-#  - puppet-lint --no-autoloader_layout-check test/*.pp
-#  - rake check:dot_underscore
-#  - rake check:git_ignore
-#  - rake check:symlinks
-#  - rake check:test_file
-#  - rake rubocop
-#  - rake validate
-#  - rake metadata_lint
+  - puppet-lint --relative manifests
+  - puppet-lint --relative test
 
 branches:
   only:
