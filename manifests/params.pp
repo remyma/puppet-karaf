@@ -46,7 +46,6 @@ class karaf::params {
   # --------------------------------
   # Karaf system properties.
   # --------------------------------
-  $karaf_http_port    = 8181
   $karaf_ssh_host     = '0.0.0.0'
   $karaf_ssh_port     = 8101
   $karaf_ssh_user     = 'karaf'

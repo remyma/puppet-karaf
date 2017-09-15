@@ -95,7 +95,7 @@
 # * Installation, override maven settings:
 #      karaf::instance { 'instance1':
 #           file_maven_settings   => 'puppet:///modules/karaf_is/maven/settings.xml'
-#       }
+#      }
 #
 # Authors
 # -------

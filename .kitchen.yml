@@ -15,8 +15,11 @@ provisioner:
 #  hiera_data_path: hieradata
 
 platforms:
-#  - name: ubuntu-14.04
   - name: centos-7.2
+    driver_config:
+      provision_command:
+        - yum update -y
+        - yum install -y net-tools tar initscripts #initscipts - needed to manage services
 
 suites:
   - name: multiple-instances
