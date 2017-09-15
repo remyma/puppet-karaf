@@ -1,0 +1,2 @@
+class { '::karaf': }
+class { '::java': }

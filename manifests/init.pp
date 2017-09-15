@@ -76,21 +76,24 @@
 # --------
 #
 # * Installation, make sure service is running and will be started at boot time :
-#       class { 'karaf': }
+#       class { '::karaf': }
+#       class { '::java': }
+#       karaf::instance { 'instance1':
+#       }
 #
 # * Installation, with startup repos and features
-#      class { 'karaf':
-#           karaf_startup_feature_repos => ['mvn:org.apache.camel.karaf/apache-camel/2.18.1/xml/features'],
-#           karaf_startup_feature_boots => ['jndi', 'jms', 'camel', 'camel-swagger', 'camel-jms']
-#       }
+#      karaf::instance { 'instance1':
+#         karaf_startup_feature_repos => ['mvn:org.apache.camel.karaf/apache-camel/2.18.1/xml/features'],
+#         karaf_startup_feature_boots => ['jndi', 'jms', 'camel', 'camel-swagger', 'camel-jms']
+#      }
 #
 # * Installation, override logging configuration:
-#      class { 'karaf':
+#      karaf::instance { 'instance1':
 #           file_karaf_logging    => 'puppet:///modules/karaf_is/karaf/etc/org.ops4j.pax.logging.cfg'
-#       }
+#      }
 #
 # * Installation, override maven settings:
-#      class { 'karaf':
+#      karaf::instance { 'instance1':
 #           file_maven_settings   => 'puppet:///modules/karaf_is/maven/settings.xml'
 #       }
 #
