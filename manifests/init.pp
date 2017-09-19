@@ -108,6 +108,7 @@
 # Copyright 2016 Matthieu Rémy.
 #
 class karaf(
+  $instances                    = undef,
   $version                      = $karaf::params::version,
   $rootdir                      = $karaf::params::rootdir,
   $install_from                 = $karaf::params::install_from,
@@ -135,5 +136,13 @@ class karaf(
   # ---------------------------------------------
   package { 'unzip': ensure => 'installed' }
   package { 'wget': ensure => 'installed' }
+
+  #  If multiple instances
+  if ($instances) {
+    create_resources(karaf::instance, $instances)
+  } else {
+    karaf::instance { 'karaf':
+    }
+  }
 
 }
