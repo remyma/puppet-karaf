@@ -42,7 +42,7 @@ define karaf::install(
     $unzip_require = File[ "${rootdir}/${karaf_file_name}.zip" ]
   } else {
     ensure_resource('exec', 'donwload_karaf', {
-      command => "/usr/bin/wget -q \"${karaf_zip_url}\" -P /tmp/",
+      command => "/usr/bin/wget -O /tmp/${karaf_file_name}.zip -q \"${karaf_zip_url}\"",
       creates  => "/tmp/${karaf_file_name}.zip",
       timeout => 1000
     })

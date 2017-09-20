@@ -1,6 +1,5 @@
 class { '::java': }
 
-# A hash of user resources:
 $karaf_instances = {
   'instance1' => {
     karaf_ssh_port          => 8101,
