@@ -1,12 +1,16 @@
 {
   "name": "remyma-karaf",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "remyma",
-  "summary": "Install and configure karaf",
+  "summary": "Install and configure karaf osgi server.",
   "license": "Apache-2.0",
   "source": "https://github.com/remyma/puppet-karaf",
-  "project_page": null,
-  "issues_url": null,
+  "project_page": "https://github.com/remyma/puppet-karaf",
+  "issues_url": "https://github.com/remyma/puppet-karaf/issues",
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
+    {"name":"puppetlabs-java","version_requirement":">= 1.6.0"}
+  ],
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
@@ -15,10 +19,13 @@
       ]
     }
   ],
-  "dependencies": [
-    {"name":"puppetlabs-stdlib","version_requirement":">= 1.0.0"},
-    {"name":"puppetlabs-java","version_requirement":">= 1.6.0"}
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 3.0.0"
+    }
   ],
-  "data_provider": null
+  "description": "Karaf module",
+  "tags": ["java", "karaf", "osgi"]
 }
 

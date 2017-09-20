@@ -10,7 +10,7 @@
 # String. Directory path where kara will be installed.
 #
 # * `rootdir`
-# String. Karaf version to install (eg. 4.0.8).
+# String. Karaf version to install (eg. 4.0.9).
 #
 # * `install_from`
 # String. 'web' or 'file'. If web, zip package is retrieved from url.

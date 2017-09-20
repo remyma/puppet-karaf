@@ -1,5 +1,4 @@
-class { '::karaf': }
 class { '::java': }
 
-karaf::instance { 'instance1':
+class { 'karaf':
 }
