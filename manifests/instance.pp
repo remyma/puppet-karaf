@@ -15,6 +15,7 @@ define karaf::instance (
   $karaf_custom_properties      = undef,
   $java_home                    = undef,
   $default_env_vars             = undef,
+  $karaf_version                = undef,
   $karaf_startup_feature_repos  = undef,
   $karaf_startup_feature_boots  = undef,
   $karaf_ssh_port               = undef,
@@ -39,6 +40,7 @@ define karaf::instance (
   $_file_maven_settings = pick($file_maven_settings, $::karaf::file_maven_settings)
   $_mvn_repositories = pick($mvn_repositories, $::karaf::mvn_repositories)
   $_file_karaf_logging = pick($file_karaf_logging, $::karaf::file_karaf_logging)
+  $_karaf_version = pick($karaf_version, $::karaf::version)
   $_karaf_zip_url = pick($karaf_zip_url, $::karaf::karaf_zip_url)
   $_karaf_file_name = pick($karaf_file_name, $::karaf::karaf_file_name)
   $_karaf_custom_properties = pick($karaf_custom_properties, $::karaf::karaf_custom_properties)
@@ -77,6 +79,7 @@ define karaf::instance (
       karaf_custom_properties     => $_karaf_custom_properties,
       java_home                   => $_java_home,
       default_env_vars            => $_default_env_vars,
+      karaf_version               => $_karaf_version,
       karaf_startup_feature_repos => $_karaf_startup_feature_repos,
       karaf_startup_feature_boots => $_karaf_startup_feature_boots,
       karaf_ssh_port              => $_karaf_ssh_port,
@@ -93,8 +96,8 @@ define karaf::instance (
   karaf::service { $name:
     ensure             => $ensure,
     rootdir            => $_rootdir,
+    service_name       => $name,
     service_user_name  => $_service_user_name,
     service_group_name => $_service_group_name,
   }
-
 }

@@ -5,6 +5,7 @@ define karaf::configuration::features(
   $rootdir                     = undef,
   $service_user_name           = undef,
   $service_group_name          = undef,
+  $karaf_version               = undef,
   $karaf_startup_feature_repos = undef,
   $karaf_startup_feature_boots = undef,
 ) {

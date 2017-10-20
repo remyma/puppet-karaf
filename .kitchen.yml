@@ -24,5 +24,3 @@ platforms:
 suites:
   - name: multiple-instances
     manifest: multiple-instances/init.pp
-  - name: remove-instance
-    manifest: remove-instance/init.pp

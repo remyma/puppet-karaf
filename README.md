@@ -40,7 +40,7 @@
 
 This module sets up Karaf instances.
 
-Current version used by this module is Karaf 4.0.9.
+Current version used by this module is Karaf 4.0.10.
 
 ## Setup
 
@@ -134,7 +134,7 @@ All parameters are optional.
 
 #### rootdir
 
- String. Karaf version to install (eg. 4.0.9).
+ String. Karaf version to install (eg. 4.0.10).
 
 #### install_from
 

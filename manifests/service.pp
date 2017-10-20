@@ -3,6 +3,7 @@ define karaf::service(
   $ensure             = $karaf::ensure,
   $rootdir            = undef,
   $service_provider   = $karaf::params::service_provider,
+  $service_name       = undef,
   $service_user_name  = undef,
   $service_group_name = undef,
 ) {
@@ -12,6 +13,7 @@ define karaf::service(
       karaf::service::init { $name:
         ensure             => $ensure,
         rootdir            => $rootdir,
+        service_name       => $service_name,
         service_user_name  => $service_user_name,
         service_group_name => $service_group_name,
       }
@@ -20,6 +22,7 @@ define karaf::service(
       karaf::service::systemd { $name:
         ensure             => $ensure,
         rootdir            => $rootdir,
+        service_name       => $service_name,
         service_user_name  => $service_user_name,
         service_group_name => $service_group_name,
       }

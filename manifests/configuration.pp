@@ -9,6 +9,7 @@ define karaf::configuration(
   $karaf_custom_properties      = undef,
   $java_home                    = undef,
   $default_env_vars             = undef,
+  $karaf_version                = undef,
   $karaf_startup_feature_repos  = undef,
   $karaf_startup_feature_boots  = undef,
   $karaf_ssh_port               = undef,
@@ -60,6 +61,7 @@ define karaf::configuration(
     service_user_name           => $service_user_name,
     rootdir                     => $rootdir,
     service_group_name          => $service_group_name,
+    karaf_version               => $karaf_version,
     karaf_startup_feature_repos => $karaf_startup_feature_repos,
     karaf_startup_feature_boots => $karaf_startup_feature_boots,
   }
