@@ -19,14 +19,29 @@ class karaf::params {
   # name of zip file to be placed in files directory in case install is done from file
   $karaf_file_name    = "apache-karaf-${version}"
 
-  # --------------------------------
-  # Service variables.
-  # --------------------------------
-  $service_name       = 'karaf'
   $service_user_name  = 'karaf'
   $service_user_id    = 500
   $service_group_name = 'karaf'
   $service_group_id   = 500
+
+  # --------------------------------
+  # Service variables.
+  # --------------------------------
+  $service_name       = 'karaf'
+  case $::operatingsystem {
+    'RedHat', 'CentOS', 'Fedora', 'Scientific', 'OracleLinux', 'SLC': {
+
+      if versioncmp($::operatingsystemmajrelease, '7') >= 0 {
+        $service_provider    = 'systemd'
+      } else {
+        $service_provider    = 'init'
+      }
+    }
+    default: {
+      fail("\"${module_name}\" provides no service parameters
+            for \"${::operatingsystem}\"")
+    }
+  }
 
   # --------------------------------
   # Java home

@@ -1,5 +1,6 @@
 # Definition: karaf::instance
 define karaf::instance (
+  $ensure                       = $karaf::ensure,
   $install_from                 = undef,
   $rootdir                      = undef,
   $service_group_name           = undef,
@@ -23,6 +24,11 @@ define karaf::instance (
   $karaf_rmi_server_host        = undef,
   $karaf_rmi_server_port        = undef,
 ) {
+
+  # ensure
+  if ! ($ensure in [ 'present', 'absent' ]) {
+    fail("\"${ensure}\" is not a valid ensure parameter value")
+  }
 
   $_install_from = pick($install_from, $::karaf::install_from)
   $_rootdir = pick($rootdir, $karaf::rootdir)
@@ -49,38 +55,43 @@ define karaf::instance (
   $_karaf_rmi_server_host = pick($karaf_rmi_server_host, $::karaf::karaf_rmi_server_host)
   $_karaf_rmi_server_port = pick($karaf_rmi_server_port, $::karaf::karaf_rmi_server_port)
 
-  karaf::install { $name:
-    install_from       => $_install_from,
-    rootdir            => $_rootdir,
-    service_group_name => $_service_group_name,
-    service_group_id   => $_service_group_id,
-    service_user_name  => $_service_user_name,
-    service_user_id    => $_service_user_id,
-    karaf_zip_url      => $_karaf_zip_url,
-    karaf_file_name    => $_karaf_file_name,
-  }
+  if ($ensure == 'present') {
+    karaf::install { $name:
+      install_from       => $_install_from,
+      rootdir            => $_rootdir,
+      service_group_name => $_service_group_name,
+      service_group_id   => $_service_group_id,
+      service_user_name  => $_service_user_name,
+      service_user_id    => $_service_user_id,
+      karaf_zip_url      => $_karaf_zip_url,
+      karaf_file_name    => $_karaf_file_name,
+    }
 
-  karaf::configuration { $name:
-    service_user_name           => $_service_user_name,
-    rootdir                     => $_rootdir,
-    service_group_name          => $_service_group_name,
-    file_maven_settings         => $_file_maven_settings,
-    mvn_repositories            => $_mvn_repositories,
-    file_karaf_logging          => $_file_karaf_logging,
-    karaf_custom_properties     => $_karaf_custom_properties,
-    java_home                   => $_java_home,
-    default_env_vars            => $_default_env_vars,
-    karaf_startup_feature_repos => $_karaf_startup_feature_repos,
-    karaf_startup_feature_boots => $_karaf_startup_feature_boots,
-    karaf_ssh_port              => $_karaf_ssh_port,
-    karaf_ssh_host              => $_karaf_ssh_host,
-    karaf_rmi_registry_host     => $_karaf_rmi_registry_host,
-    karaf_rmi_registry_port     => $_karaf_rmi_registry_port,
-    karaf_rmi_server_host       => $_karaf_rmi_server_host,
-    karaf_rmi_server_port       => $_karaf_rmi_server_port,
+    karaf::configuration { $name:
+      service_user_name           => $_service_user_name,
+      rootdir                     => $_rootdir,
+      service_group_name          => $_service_group_name,
+      file_maven_settings         => $_file_maven_settings,
+      mvn_repositories            => $_mvn_repositories,
+      file_karaf_logging          => $_file_karaf_logging,
+      karaf_custom_properties     => $_karaf_custom_properties,
+      java_home                   => $_java_home,
+      default_env_vars            => $_default_env_vars,
+      karaf_startup_feature_repos => $_karaf_startup_feature_repos,
+      karaf_startup_feature_boots => $_karaf_startup_feature_boots,
+      karaf_ssh_port              => $_karaf_ssh_port,
+      karaf_ssh_host              => $_karaf_ssh_host,
+      karaf_rmi_registry_host     => $_karaf_rmi_registry_host,
+      karaf_rmi_registry_port     => $_karaf_rmi_registry_port,
+      karaf_rmi_server_host       => $_karaf_rmi_server_host,
+      karaf_rmi_server_port       => $_karaf_rmi_server_port,
+    }
+  } else {
+
   }
 
   karaf::service { $name:
+    ensure             => $ensure,
     rootdir            => $_rootdir,
     service_user_name  => $_service_user_name,
     service_group_name => $_service_group_name,

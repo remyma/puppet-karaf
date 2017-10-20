@@ -6,6 +6,18 @@
 # Parameters
 # ----------
 #
+# * `instances` [Hash]
+#   Define instances via a hash.
+#
+# * `ensure` [String]
+#   Controls if the managed resources shall be `present` or `absent`.
+#   If set to `absent`, the managed software packages will be uninstalled, and
+#   any traces of the packages will be purged as well as possible, possibly
+#   including existing configuration files.
+#   System modifications (if any) will be reverted as well as possible (e.g.
+#   removal of created users, services, changed log settings, and so on).
+#   This is a destructive parameter and should be used with care.
+#
 # * `version`
 # String. Directory path where kara will be installed.
 #
@@ -97,6 +109,11 @@
 #           file_maven_settings   => 'puppet:///modules/karaf_is/maven/settings.xml'
 #      }
 #
+# * Uninstallation
+#     class { 'karaf':
+#       ensure => 'absent',
+#     }
+#
 # Authors
 # -------
 #
@@ -109,6 +126,7 @@
 #
 class karaf(
   $instances                    = undef,
+  $ensure                       = 'present',
   $version                      = $karaf::params::version,
   $rootdir                      = $karaf::params::rootdir,
   $install_from                 = $karaf::params::install_from,

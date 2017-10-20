@@ -7,7 +7,7 @@ define karaf::configuration::logging(
   $service_group_name   = undef,
   $file_karaf_logging   = undef,
 ) {
-  file { "${rootdir}/karaf-${name}/etc/org.ops4j.pax.logging.cfg":
+  file { "${rootdir}/${name}/etc/org.ops4j.pax.logging.cfg":
     ensure => present,
     source => [
       $file_karaf_logging

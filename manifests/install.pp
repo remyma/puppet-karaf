@@ -65,7 +65,7 @@ define karaf::install(
     recurse => true
   })
 
-  ensure_resource('file', "${rootdir}/karaf-${name}", {
+  ensure_resource('file', "${rootdir}/${name}", {
     ensure  => 'link',
     target  => "${rootdir}/${karaf_file_name}-${name}/",
     owner   => $service_user_name,

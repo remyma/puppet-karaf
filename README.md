@@ -73,7 +73,7 @@ class { 'karaf':
 }
 ```
 
-This will install and configure a service named 'karaf-instance1'.
+This will install and configure a service named 'karaf'.
 
 * You can specify repos to be added on karaf startup, as well as features to start during karaf boot
 

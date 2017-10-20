@@ -27,7 +27,7 @@ define karaf::configuration::maven(
   })
 
   # Deploy ops4j mvn config file.
-  ensure_resource(file, "${rootdir}/karaf-${name}/etc/org.ops4j.pax.url.mvn.cfg", {
+  ensure_resource(file, "${rootdir}/${name}/etc/org.ops4j.pax.url.mvn.cfg", {
     ensure  => file,
     content => template('karaf/karaf/etc/org.ops4j.pax.url.mvn.cfg.erb'),
     owner   => $service_user_name,

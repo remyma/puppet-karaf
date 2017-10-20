@@ -6,7 +6,7 @@ define karaf::configuration::system(
   $service_user_name    = undef,
   $service_group_name   = undef,
 ) {
-  file { "${rootdir}/karaf-${name}/etc/system.properties":
+  file { "${rootdir}/${name}/etc/system.properties":
     ensure  => file,
     content => template('karaf/karaf/etc/system.properties.erb'),
     owner   => $service_user_name,

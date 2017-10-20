@@ -7,7 +7,7 @@ define karaf::configuration::custom_properties(
   $service_group_name      = undef,
   $karaf_custom_properties = undef,
 ) {
-  file { "${rootdir}/karaf-${name}/etc/custom.properties":
+  file { "${rootdir}/${name}/etc/custom.properties":
     ensure  => file,
     content => template('karaf/karaf/etc/custom.properties.erb'),
     owner   => $service_user_name,

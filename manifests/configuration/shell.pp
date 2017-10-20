@@ -8,7 +8,7 @@ define karaf::configuration::shell(
   $karaf_ssh_port       = undef,
   $karaf_ssh_host       = undef,
 ) {
-  file { "${rootdir}/karaf-${name}/etc/org.apache.karaf.shell.cfg":
+  file { "${rootdir}/${name}/etc/org.apache.karaf.shell.cfg":
     ensure  => file,
     content => template('karaf/karaf/etc/org.apache.karaf.shell.cfg.erb'),
     owner   => $service_user_name,

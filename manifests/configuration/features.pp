@@ -8,7 +8,7 @@ define karaf::configuration::features(
   $karaf_startup_feature_repos = undef,
   $karaf_startup_feature_boots = undef,
 ) {
-  file { "${rootdir}/karaf-${name}/etc/org.apache.karaf.features.cfg":
+  file { "${rootdir}/${name}/etc/org.apache.karaf.features.cfg":
     ensure  => file,
     content => template('karaf/karaf/etc/org.apache.karaf.features.cfg.erb'),
     owner   => $service_user_name,

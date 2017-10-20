@@ -8,7 +8,7 @@ define karaf::configuration::setenv(
   $java_home            = undef,
   $default_env_vars     = undef,
 ) {
-  file { "${rootdir}/karaf-${name}/bin/setenv":
+  file { "${rootdir}/${name}/bin/setenv":
     ensure  => file,
     content => template('karaf/karaf/bin/setenv.erb'),
     owner   => $service_user_name,
