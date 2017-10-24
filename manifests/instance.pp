@@ -3,6 +3,7 @@ define karaf::instance (
   $ensure                       = $karaf::ensure,
   $install_from                 = undef,
   $rootdir                      = undef,
+  $service_name                 = undef,
   $service_group_name           = undef,
   $service_group_id             = undef,
   $service_user_name            = undef,
@@ -33,6 +34,7 @@ define karaf::instance (
 
   $_install_from = pick($install_from, $::karaf::install_from)
   $_rootdir = pick($rootdir, $karaf::rootdir)
+  $_service_name = pick($service_name, $name)
   $_service_group_name = pick($service_group_name, $::karaf::service_group_name)
   $_service_group_id = pick($service_group_id, $::karaf::service_group_id)
   $_service_user_name = pick($service_user_name, $::karaf::service_user_name)
@@ -57,21 +59,23 @@ define karaf::instance (
   $_karaf_rmi_server_host = pick($karaf_rmi_server_host, $::karaf::karaf_rmi_server_host)
   $_karaf_rmi_server_port = pick($karaf_rmi_server_port, $::karaf::karaf_rmi_server_port)
 
-  if ($ensure == 'present') {
-    karaf::install { $name:
-      install_from       => $_install_from,
-      rootdir            => $_rootdir,
-      service_group_name => $_service_group_name,
-      service_group_id   => $_service_group_id,
-      service_user_name  => $_service_user_name,
-      service_user_id    => $_service_user_id,
-      karaf_zip_url      => $_karaf_zip_url,
-      karaf_file_name    => $_karaf_file_name,
-    }
+  karaf::instance::install { $name:
+    ensure             => $ensure,
+    install_from       => $_install_from,
+    rootdir            => $_rootdir,
+    service_name       => $_service_name,
+    service_group_name => $_service_group_name,
+    service_group_id   => $_service_group_id,
+    service_user_name  => $_service_user_name,
+    service_user_id    => $_service_user_id,
+    karaf_zip_url      => $_karaf_zip_url,
+    karaf_file_name    => $_karaf_file_name,
+  }
 
-    karaf::configuration { $name:
-      service_user_name           => $_service_user_name,
+  if ($ensure == 'present') {
+    karaf::instance::configuration { $name:
       rootdir                     => $_rootdir,
+      service_user_name           => $_service_user_name,
       service_group_name          => $_service_group_name,
       file_maven_settings         => $_file_maven_settings,
       mvn_repositories            => $_mvn_repositories,
@@ -89,14 +93,12 @@ define karaf::instance (
       karaf_rmi_server_host       => $_karaf_rmi_server_host,
       karaf_rmi_server_port       => $_karaf_rmi_server_port,
     }
-  } else {
-
   }
 
-  karaf::service { $name:
+  karaf::instance::service { $name:
     ensure             => $ensure,
     rootdir            => $_rootdir,
-    service_name       => $name,
+    service_name       => $_service_name,
     service_user_name  => $_service_user_name,
     service_group_name => $_service_group_name,
   }

@@ -1,5 +1,5 @@
-# Definition: karaf::service::init
-define karaf::service::init (
+# Definition: karaf::service::service
+define karaf::service::service (
   $ensure             = $karaf::ensure,
   $rootdir            = undef,
   $service_name       = undef,

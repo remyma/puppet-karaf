@@ -1,7 +1,7 @@
 # PRIVATE CLASS - do not use directly
 #
-# Karaf features configuration.
-define karaf::configuration::features(
+# Definition: karaf::instance::configuration::features.
+define karaf::instance::configuration::features(
   $rootdir                     = undef,
   $service_user_name           = undef,
   $service_group_name          = undef,

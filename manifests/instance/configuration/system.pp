@@ -1,16 +1,14 @@
 # PRIVATE CLASS - do not use directly
 #
-# Karaf set env variables.
-define karaf::configuration::setenv(
+# Definition: karaf::instance::configuration::system
+define karaf::instance::configuration::system(
   $rootdir              = undef,
   $service_user_name    = undef,
   $service_group_name   = undef,
-  $java_home            = undef,
-  $default_env_vars     = undef,
 ) {
-  file { "${rootdir}/${name}/bin/setenv":
+  file { "${rootdir}/${name}/etc/system.properties":
     ensure  => file,
-    content => template('karaf/karaf/bin/setenv.erb'),
+    content => template('karaf/karaf/etc/system.properties.erb'),
     owner   => $service_user_name,
     group   => $service_group_name
   }

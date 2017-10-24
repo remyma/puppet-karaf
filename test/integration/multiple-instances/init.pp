@@ -16,4 +16,3 @@ $karaf_instances = {
 class { 'karaf':
   instances => $karaf_instances
 }
-

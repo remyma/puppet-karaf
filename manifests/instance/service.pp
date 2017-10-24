@@ -1,5 +1,5 @@
-# Definition: karaf::service
-define karaf::service(
+# Definition: karaf::instance::service
+define karaf::instance::service(
   $ensure             = $karaf::ensure,
   $rootdir            = undef,
   $service_provider   = $karaf::params::service_provider,
@@ -10,7 +10,7 @@ define karaf::service(
 
   case $service_provider {
     'init': {
-      karaf::service::init { $name:
+      karaf::service::service { $name:
         ensure             => $ensure,
         rootdir            => $rootdir,
         service_name       => $service_name,
@@ -28,7 +28,7 @@ define karaf::service(
       }
     }
     default: {
-      fail("Unknown service provider ${karaf::real_service_provider}")
+      fail("Unknown service provider ${service_provider}")
     }
   }
 }

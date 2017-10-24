@@ -13,7 +13,7 @@ define karaf::service::systemd (
     refreshonly => true,
   }
 
-  if ( $ensure == 'present' ) {
+  if ($ensure == 'present') {
     $service_ensure = 'running'
     $service_enable = true
 

@@ -1,7 +1,7 @@
 # PRIVATE CLASS - do not use directly
 #
-# Karaf shell configuration.
-define karaf::configuration::shell(
+# Definition: karaf::instance::configuration::shell
+define karaf::instance::configuration::shell(
   $rootdir              = undef,
   $service_user_name    = undef,
   $service_group_name   = undef,

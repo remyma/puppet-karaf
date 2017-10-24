@@ -1,7 +1,7 @@
 # PRIVATE DEFINITION - do not use directly
 #
-# Karaf maven configuration.
-define karaf::configuration::maven(
+# Definition: karaf::instance::configuration::maven
+define karaf::instance::configuration::maven(
   $service_user_name    = undef,
   $rootdir              = undef,
   $service_group_name   = undef,

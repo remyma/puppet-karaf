@@ -1,5 +1,5 @@
-# Definition: karaf::configuration
-define karaf::configuration(
+# Definition: karaf::instance::configuration
+define karaf::instance::configuration(
   $service_user_name            = undef,
   $rootdir                      = undef,
   $service_group_name           = undef,
@@ -20,22 +20,22 @@ define karaf::configuration(
   $karaf_rmi_server_port        = undef,
 ) {
 
-  karaf::configuration::maven { $name:
-    service_user_name   => $service_user_name,
+  karaf::instance::configuration::maven { $name:
     rootdir             => $rootdir,
+    service_user_name   => $service_user_name,
     service_group_name  => $service_group_name,
     file_maven_settings => $file_maven_settings,
     mvn_repositories    => $mvn_repositories
   }
 
-  karaf::configuration::custom_properties { $name:
-    service_user_name       => $service_user_name,
+  karaf::instance::configuration::custom_properties { $name:
     rootdir                 => $rootdir,
+    service_user_name       => $service_user_name,
     service_group_name      => $service_group_name,
     karaf_custom_properties => $karaf_custom_properties
   }
 
-  karaf::configuration::setenv { $name:
+  karaf::instance::configuration::setenv { $name:
     service_user_name  => $service_user_name,
     rootdir            => $rootdir,
     service_group_name => $service_group_name,
@@ -43,7 +43,7 @@ define karaf::configuration(
     default_env_vars   => $default_env_vars,
   }
 
-  karaf::configuration::shell { $name:
+  karaf::instance::configuration::shell { $name:
     service_user_name  => $service_user_name,
     rootdir            => $rootdir,
     service_group_name => $service_group_name,
@@ -51,13 +51,13 @@ define karaf::configuration(
     karaf_ssh_host     => $karaf_ssh_host,
   }
 
-  karaf::configuration::system { $name:
+  karaf::instance::configuration::system { $name:
     service_user_name  => $service_user_name,
     rootdir            => $rootdir,
     service_group_name => $service_group_name,
   }
 
-  karaf::configuration::features { $name:
+  karaf::instance::configuration::features { $name:
     service_user_name           => $service_user_name,
     rootdir                     => $rootdir,
     service_group_name          => $service_group_name,
@@ -66,14 +66,14 @@ define karaf::configuration(
     karaf_startup_feature_boots => $karaf_startup_feature_boots,
   }
 
-  karaf::configuration::logging { $name:
+  karaf::instance::configuration::logging { $name:
     service_user_name  => $service_user_name,
     rootdir            => $rootdir,
     service_group_name => $service_group_name,
     file_karaf_logging => $file_karaf_logging,
   }
 
-  karaf::configuration::rmi { $name:
+  karaf::instance::configuration::rmi { $name:
     rootdir                 => $rootdir,
     service_user_name       => $service_user_name,
     service_group_name      => $service_group_name,

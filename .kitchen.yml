@@ -24,3 +24,4 @@ platforms:
 suites:
   - name: multiple-instances
     manifest: multiple-instances/init.pp
+

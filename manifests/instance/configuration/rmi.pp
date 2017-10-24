@@ -1,7 +1,7 @@
 # PRIVATE DEFINITION - do not use directly
 #
-# Karaf rmi configuration.
-define karaf::configuration::rmi(
+# Definition: karaf::instance::configuration::rmi
+define karaf::instance::configuration::rmi(
   $rootdir                  = undef,
   $service_user_name        = undef,
   $service_group_name       = undef,

@@ -1,7 +1,7 @@
 # PRIVATE CLASS - do not use directly
 #
-# Karaf configuration.
-define karaf::configuration::custom_properties(
+# Definition: karaf::instance::configuration::custom_properties.
+define karaf::instance::configuration::custom_properties(
   $rootdir                 = undef,
   $service_user_name       = undef,
   $service_group_name      = undef,

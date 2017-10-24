@@ -1,7 +1,7 @@
 # PRIVATE CLASS - do not use directly
 #
-# Karaf logging configuration.
-define karaf::configuration::logging(
+# Definition: karaf::instance::configuration::logging
+define karaf::instance::configuration::logging(
   $rootdir              = undef,
   $service_user_name    = undef,
   $service_group_name   = undef,
