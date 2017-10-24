@@ -12,6 +12,7 @@
     * [Beginning with karaf](#beginning-with-karaf)
 3. [Usage - Configuration options and additional functionality](#usage)
     * [How to manage multiple karaf instances](#multiple-instances)
+    * [How to remove a karaf instance](#how-to-remove-a-karaf-instance)
 4. [Reference](#reference)
     * [Parameters](#parameters)
         * [version](#version)
@@ -121,6 +122,21 @@ class { 'karaf':
 }
 
 ```
+
+### How to remove a karaf instance
+
+```
+$karaf_instances = {
+  'instance1' => {
+    ensure  => absent
+  }
+}
+
+class { 'karaf':
+  instances => $karaf_instances
+}
+```
+
 
 ## Reference
 
