@@ -1,6 +1,7 @@
 # Karaf
 
 [![Build Status](https://travis-ci.org/remyma/puppet-karaf.svg?branch=master)](https://travis-ci.org/remyma/puppet-karaf)
+[![Puppet Forge Version](https://img.shields.io/puppetforge/v/remyma/karaf.svg)](https://forge.puppetlabs.com/remyma/karaf)
 
 
 #### Table of Contents
@@ -11,7 +12,7 @@
     * [Setup requirements](#setup-requirements)
     * [Beginning with karaf](#beginning-with-karaf)
 3. [Usage - Configuration options and additional functionality](#usage)
-    * [How to manage multiple karaf instances](#multiple-instances)
+    * [How to manage multiple karaf instances](#how-to-manage-multiple-karaf-instances)
     * [How to remove a karaf instance](#how-to-remove-a-karaf-instance)
 4. [Reference](#reference)
     * [Parameters](#parameters)
