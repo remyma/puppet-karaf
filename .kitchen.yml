@@ -3,9 +3,6 @@ driver:
   name: docker
   use_sudo: false
   privileged: true
-  provision_command:
-    - /usr/bin/systemctl enable sshd
-  run_command: /usr/sbin/init
 
 provisioner:
   name: puppet_apply
@@ -18,8 +15,17 @@ platforms:
   - name: centos-7.2
     driver_config:
       provision_command:
+        - /usr/bin/systemctl enable sshd
         - yum update -y
         - yum install -y net-tools tar initscripts #initscipts - needed to manage services
+      run_command: /usr/sbin/init
+  - name: centos-6.7
+    driver_config:
+      provision_command:
+#        - /usr/bin/systemctl enable sshd
+        - yum update -y
+        - yum install -y net-tools tar initscripts #initscipts - needed to manage services
+      run_command: /sbin/init
 
 suites:
   - name: multiple-instances

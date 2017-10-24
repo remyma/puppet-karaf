@@ -1,4 +1,6 @@
-class { '::java': }
+class { '::java':
+  package => 'java-1.8.0-openjdk-devel',
+}
 
 $karaf_instances = {
   'instance1' => {

@@ -1,19 +1,76 @@
-[Unit]
-Description=Starts and stops karaf instance on this system
+#!/bin/sh
 
-[Service]
-Type=forking
-User=<%= @service_user_name %>
-Group=<%= @service_group_name %>
-ExecStart=<%= @rootdir %>/<%= @service_name %>/bin/start
-ExecStop=<%= @rootdir %>/<%= @service_name %>/bin/stop
+### BEGIN INIT INFO
+# Provides:          apache-karaf
+# Required-Start:
+# Required-Stop:
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Apache Karaf
+# Description:       Apache Karaf
+### END INIT INFO
 
-# Shutdown delay in seconds, before process is tried to be killed with KILL (if configured)
-TimeoutStopSec=20
+# System binaries
+SU=/bin/su
+TOUCH=/bin/touch
 
-[Install]
-WantedBy=multi-user.target
+NAME=$( basename -- $0 )
+DESC="Apache Karaf"
 
+KARAF_ROOT=<%= @rootdir %>/<%= @service_name %>
+KARAF_USER=<%= @service_user_name %>
 
+START_DAEMON=${KARAF_ROOT}/bin/start
+STOP_DAEMON=${KARAF_ROOT}/bin/stop
 
+LOCK_FILE=/var/run/${NAME}.lock
 
+# Read configuration variable file if it is present
+[ -r /etc/default/$NAME ] && . /etc/default/$NAME
+
+do_start()
+{
+    echo "Starting ${NAME}: ${DESC}"
+
+    if [ -f "${LOCK_FILE}" ];
+    then
+        echo "Lock file exists - ${DESC} is running already?"
+        exit 1
+    else
+        ${SU} ${KARAF_USER} -c ${START_DAEMON}
+        ${TOUCH} ${LOCK_FILE}
+    fi
+}
+
+do_stop()
+{
+    echo "Stopping ${NAME}: ${DESC}"
+    ${SU} ${KARAF_USER} -c ${STOP_DAEMON}
+    rm -f ${LOCK_FILE}
+}
+
+do_restart()
+{
+    do_stop
+    do_start
+}
+
+case "$1" in
+
+    start)
+        do_start
+        ;;
+    stop)
+        do_stop
+        ;;
+    restart)
+        do_restart
+        ;;
+    *)
+        echo "Usage: ${NAME} {start|stop|restart}"
+        exit 1
+        ;;
+
+esac
+
+exit 0

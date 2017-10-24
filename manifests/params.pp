@@ -20,9 +20,9 @@ class karaf::params {
   $karaf_file_name    = "apache-karaf-${version}"
 
   $service_user_name  = 'karaf'
-  $service_user_id    = 500
+  $service_user_id    = 5000
   $service_group_name = 'karaf'
-  $service_group_id   = 500
+  $service_group_id   = 5000
 
   # --------------------------------
   # Service variables.
@@ -46,7 +46,21 @@ class karaf::params {
   # --------------------------------
   # Java home
   # --------------------------------
-  $java_home          = '/usr/lib/jvm/java-1.8.0-openjdk'
+  case $::operatingsystem {
+    'RedHat', 'CentOS', 'Fedora', 'Scientific', 'OracleLinux', 'SLC': {
+
+      if versioncmp($::operatingsystemmajrelease, '7') < 0 {
+        $java_home = '/usr/lib/jvm/jre-1.8.0-openjdk.x86_64'
+      } else {
+        $java_home = '/usr/lib/jvm/java-1.8.0-openjdk'
+      }
+    }
+    default: {
+      $java_home = '/usr/lib/jvm/java-1.8.0-openjdk'
+    }
+  }
+
+
 
   # --------------------------------
   # Environnment variables

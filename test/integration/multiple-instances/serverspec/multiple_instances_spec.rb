@@ -23,10 +23,6 @@ describe port(1099) do
   it { should be_listening }
 end
 
-describe port(44444) do
-  it { should be_listening }
-end
-
 # Check that karaf instance2 is up.
 describe service('instance2') do
   it { should be_enabled }
