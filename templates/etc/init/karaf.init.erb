@@ -22,6 +22,7 @@ KARAF_USER=<%= @service_user_name %>
 
 START_DAEMON=${KARAF_ROOT}/bin/start
 STOP_DAEMON=${KARAF_ROOT}/bin/stop
+STATUS_DAEMON=${KARAF_ROOT}/bin/status
 
 LOCK_FILE=/var/run/${NAME}.lock
 
@@ -55,6 +56,11 @@ do_restart()
     do_start
 }
 
+do_status()
+{
+    ${SU} ${KARAF_USER} -c ${STATUS_DAEMON}
+}
+
 case "$1" in
 
     start)
@@ -66,8 +72,11 @@ case "$1" in
     restart)
         do_restart
         ;;
+    status)
+        do_status
+        ;;
     *)
-        echo "Usage: ${NAME} {start|stop|restart}"
+        echo "Usage: ${NAME} {start|stop|restart|status}"
         exit 1
         ;;
 
