@@ -149,12 +149,6 @@ class karaf(
   $file_karaf_logging           = $karaf::params::file_karaf_logging,
 ) inherits karaf::params {
 
-  # ---------------------------------------------
-  # Install dependencies.
-  # ---------------------------------------------
-  package { 'unzip': ensure => 'installed' }
-  package { 'wget': ensure => 'installed' }
-
   #  If multiple instances
   if ($instances) {
     create_resources(karaf::instance, $instances)
