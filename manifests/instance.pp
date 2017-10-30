@@ -27,17 +27,6 @@ define karaf::instance (
   $karaf_rmi_server_port        = $karaf::params::karaf_rmi_server_port,
 ) {
 
-  # ---------------------------------------------
-  # Install dependencies.
-  # ---------------------------------------------
-  ensure_resource('package', 'unzip', {
-    ensure => 'installed',
-  })
-
-  ensure_resource('package', 'wget', {
-    ensure => 'installed',
-  })
-
   # ensure
   if ! ($ensure in [ 'present', 'absent' ]) {
     fail("\"${ensure}\" is not a valid ensure parameter value")
