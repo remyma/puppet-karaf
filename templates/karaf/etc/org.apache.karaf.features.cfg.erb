@@ -21,10 +21,10 @@
 # Comma separated list of features repositories to register by default
 #
 featuresRepositories = \
-    mvn:org.apache.karaf.features/enterprise/<%= @karaf_version %>/xml/features, \
-    mvn:org.apache.karaf.features/framework/<%= @karaf_version %>/xml/features, \
     mvn:org.apache.karaf.features/standard/<%= @karaf_version %>/xml/features, \
-    mvn:org.apache.karaf.features/spring/<%= @karaf_version %>/xml/features<%= ', \\' if @karaf_startup_feature_repos.size > 0 %>
+    mvn:org.apache.karaf.features/spring/<%= @karaf_version %>/xml/features, \
+    mvn:org.apache.karaf.features/framework/<%= @karaf_version %>/xml/features, \
+    mvn:org.apache.karaf.features/enterprise/<%= @karaf_version %>/xml/features<%= ', \\' if @karaf_startup_feature_repos.size > 0 %>
     <% @karaf_startup_feature_repos.each_with_index do |repo, i| -%>
     <%= repo %><%= ', \\' if i < (@karaf_startup_feature_repos.size - 1) %>
     <% end -%>

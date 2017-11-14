@@ -6,12 +6,7 @@ define karaf::service::service (
   $service_user_name  = undef,
   $service_group_name = undef,
 ) {
-  $notify_service = Service["service-${service_name}"]
-
-  exec { "${service_name}-systemd_reload_karaf":
-    command     => '/bin/systemctl daemon-reload',
-    refreshonly => true,
-  }
+  $notyify_service = Service["service-${service_name}"]
 
   if ($ensure == 'present') {
     $service_ensure = 'running'
@@ -21,6 +16,7 @@ define karaf::service::service (
       ensure  => file,
       mode   => '0755',
       content => template('karaf/etc/init/karaf.init.erb'),
+      notify => $notify_service,
     }
   } else {
     $service_ensure = 'stopped'
