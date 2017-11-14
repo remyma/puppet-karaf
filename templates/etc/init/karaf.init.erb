@@ -23,30 +23,19 @@ KARAF_USER=<%= @service_user_name %>
 START_DAEMON=${KARAF_ROOT}/bin/start
 STOP_DAEMON=${KARAF_ROOT}/bin/stop
 
-LOCK_FILE=/var/run/${NAME}.lock
-
 # Read configuration variable file if it is present
 [ -r /etc/default/$NAME ] && . /etc/default/$NAME
 
 do_start()
 {
     echo "Starting ${NAME}: ${DESC}"
-
-    if [ -f "${LOCK_FILE}" ];
-    then
-        echo "Lock file exists - ${DESC} is running already?"
-        exit 1
-    else
-        ${SU} ${KARAF_USER} -c ${START_DAEMON}
-        ${TOUCH} ${LOCK_FILE}
-    fi
+    ${SU} ${KARAF_USER} -c ${START_DAEMON}
 }
 
 do_stop()
 {
     echo "Stopping ${NAME}: ${DESC}"
     ${SU} ${KARAF_USER} -c ${STOP_DAEMON}
-    rm -f ${LOCK_FILE}
 }
 
 do_restart()
