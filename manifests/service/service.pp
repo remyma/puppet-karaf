@@ -12,17 +12,17 @@ define karaf::service::service (
     $service_ensure = 'running'
     $service_enable = true
 
-    file { "/etc/init.d/$service_name":
+    file { "/etc/init.d/${service_name}":
       ensure  => file,
-      mode   => '0755',
+      mode    => '0755',
       content => template('karaf/etc/init/karaf.init.erb'),
-      notify => $notify_service,
+      notify  => $notify_service,
     }
   } else {
     $service_ensure = 'stopped'
     $service_enable = false
 
-    file { "/etc/init.d/$service_name":
+    file { "/etc/init.d/${service_name}":
       ensure  => 'absent',
     }
   }
@@ -31,7 +31,7 @@ define karaf::service::service (
   service { "service-${service_name}":
     ensure     => $service_ensure,
     enable     => $service_enable,
-    name       => "${service_name}",
+    name       => $service_name,
     hasstatus  => true,
     hasrestart => true,
     pattern    => $service_name,
