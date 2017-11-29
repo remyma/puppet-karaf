@@ -68,7 +68,8 @@ define karaf::instance::install(
     group               => $service_group_name,
     source              => "${rootdir}/${karaf_file_name}",
     source_permissions  => 'use',
-    recurse => true
+    recurse             => true,
+    replace             => false
   })
 
   if ($ensure == 'absent') {
@@ -82,5 +83,6 @@ define karaf::instance::install(
     target  => "${rootdir}/${karaf_file_name}-${service_name}/",
     owner   => $service_user_name,
     group   => $service_group_name,
+    replace => false
   })
 }
