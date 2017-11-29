@@ -6,7 +6,7 @@ define karaf::service::service (
   $service_user_name  = undef,
   $service_group_name = undef,
 ) {
-  $notyify_service = Service["service-${service_name}"]
+  $notify_service = Service["service-${service_name}"]
 
   if ($ensure == 'present') {
     $service_ensure = 'running'
