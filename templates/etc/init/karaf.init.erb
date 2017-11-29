@@ -21,6 +21,7 @@ KARAF_ROOT=<%= @rootdir %>/<%= @service_name %>
 KARAF_USER=<%= @service_user_name %>
 
 START_DAEMON=${KARAF_ROOT}/bin/start
+STATUS_DAEMON=${KARAF_ROOT}/bin/status
 STOP_DAEMON=${KARAF_ROOT}/bin/stop
 
 # Read configuration variable file if it is present
@@ -30,6 +31,11 @@ do_start()
 {
     echo "Starting ${NAME}: ${DESC}"
     ${SU} ${KARAF_USER} -c ${START_DAEMON}
+}
+
+do_status()
+{
+    ${SU} ${KARAF_USER} -c ${STATUS_DAEMON}
 }
 
 do_stop()
@@ -49,6 +55,9 @@ case "$1" in
     start)
         do_start
         ;;
+    start)
+        do_status
+        ;;
     stop)
         do_stop
         ;;
@@ -56,7 +65,7 @@ case "$1" in
         do_restart
         ;;
     *)
-        echo "Usage: ${NAME} {start|stop|restart}"
+        echo "Usage: ${NAME} {start|stop|status|restart}"
         exit 1
         ;;
 
