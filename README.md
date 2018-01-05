@@ -147,11 +147,11 @@ All parameters are optional.
 
 #### version
 
- String. Directory path where kara will be installed.
+ String. Karaf version to install (eg. 4.0.10).
 
 #### rootdir
 
- String. Karaf version to install (eg. 4.0.10).
+ String. Directory path where kara will be installed.
 
 #### install_from
 
