@@ -73,6 +73,13 @@ class karaf::params {
   $karaf_custom_properties = []
 
   # --------------------------------
+  # Karaf users definition.
+  # --------------------------------
+  $karaf_users_definition = {
+    'karaf' => 'karaf,_g_:admingroup'
+  }
+
+  # --------------------------------
   # Karaf system properties.
   # --------------------------------
   $karaf_ssh_host     = '0.0.0.0'

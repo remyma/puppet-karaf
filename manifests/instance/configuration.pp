@@ -7,6 +7,7 @@ define karaf::instance::configuration(
   $mvn_repositories             = undef,
   $file_karaf_logging           = undef,
   $karaf_custom_properties      = undef,
+  $karaf_users_definition       = undef,
   $java_home                    = undef,
   $default_env_vars             = undef,
   $karaf_version                = undef,
@@ -33,6 +34,13 @@ define karaf::instance::configuration(
     service_user_name       => $service_user_name,
     service_group_name      => $service_group_name,
     karaf_custom_properties => $karaf_custom_properties
+  }
+
+  karaf::instance::configuration::users_definition { $name:
+    rootdir                 => $rootdir,
+    service_user_name       => $service_user_name,
+    service_group_name      => $service_group_name,
+    karaf_users_definition  => $karaf_users_definition
   }
 
   karaf::instance::configuration::setenv { $name:

@@ -14,6 +14,7 @@ define karaf::instance (
   $karaf_zip_url                = $karaf::params::karaf_zip_url,
   $karaf_file_name              = $karaf::params::karaf_file_name,
   $karaf_custom_properties      = $karaf::params::karaf_custom_properties,
+  $karaf_users_definition       = $karaf::params::karaf_users_definition,
   $java_home                    = $karaf::params::java_home,
   $default_env_vars             = $karaf::params::default_env_vars,
   $karaf_version                = $karaf::params::version,
