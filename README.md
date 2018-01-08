@@ -147,11 +147,11 @@ All parameters are optional.
 
 #### version
 
- String. Directory path where kara will be installed.
+ String. Karaf version to install (eg. 4.0.10).
 
 #### rootdir
 
- String. Karaf version to install (eg. 4.0.10).
+ String. Directory path where karaf will be installed.
 
 #### install_from
 
@@ -191,9 +191,11 @@ All parameters are optional.
 
  Array. Environment variables used in setenv.sh file.
  Example :
+ ```puppet
  default_env_vars      => {
     'JAVA_MIN_MEM'  => '256M'
  }
+ ```
 
 #### karaf_ssh_host
 
@@ -209,8 +211,18 @@ All parameters are optional.
 
 #### karaf_custom_properties
 
- Array. custom properties to extand karaf properties in etc/custom.properties file.
+ Array. custom properties to extend karaf properties in etc/custom.properties file.
 
+#### karaf_users_definition
+
+ Array. list of users definition to add in etc/users.properties file.
+ By default, it will add the karaf user as admin with karaf password (same as the default Karaf installation).
+ ```puppet
+   karaf_users_definition => {
+     'karaf' => 'karaf,_g_:admingroup'
+   }
+ ```
+ The syntax is explained in [users.properties file](templates/karaf/etc/users.properties.erb)
 
 #### karaf_startup_feature_repos
 
