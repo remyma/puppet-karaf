@@ -68,6 +68,7 @@ define karaf::instance (
       mvn_repositories            => $mvn_repositories,
       file_karaf_logging          => $file_karaf_logging,
       karaf_custom_properties     => $karaf_custom_properties,
+      karaf_users_definition      => $karaf_users_definition,
       java_home                   => $java_home,
       default_env_vars            => $default_env_vars,
       karaf_version               => $karaf_version,
