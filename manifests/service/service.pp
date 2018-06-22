@@ -1,7 +1,7 @@
 # Definition: karaf::service::service
 define karaf::service::service (
   $ensure             = $karaf::ensure,
-  $rootdir            = undef,
+  $instance_root      = undef,
   $service_name       = undef,
   $service_user_name  = undef,
   $service_group_name = undef,

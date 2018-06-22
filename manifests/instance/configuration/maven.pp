@@ -3,7 +3,7 @@
 # Definition: karaf::instance::configuration::maven
 define karaf::instance::configuration::maven(
   $service_user_name    = undef,
-  $rootdir              = undef,
+  $serverdir            = undef,
   $service_group_name   = undef,
   $file_maven_settings  = undef,
   $mvn_repositories     = undef,
@@ -27,7 +27,7 @@ define karaf::instance::configuration::maven(
   })
 
   # Deploy ops4j mvn config file.
-  ensure_resource(file, "${rootdir}/${name}/etc/org.ops4j.pax.url.mvn.cfg", {
+  ensure_resource(file, "${serverdir}/etc/org.ops4j.pax.url.mvn.cfg", {
     ensure  => file,
     content => template('karaf/karaf/etc/org.ops4j.pax.url.mvn.cfg.erb'),
     owner   => $service_user_name,

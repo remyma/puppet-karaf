@@ -2,14 +2,14 @@
 #
 # Definition: karaf::instance::configuration::system
 define karaf::instance::configuration::system(
-  $rootdir              = undef,
+  $serverdir              = undef,
   $service_user_name    = undef,
   $service_group_name   = undef,
 ) {
-  file { "${rootdir}/${name}/etc/system.properties":
+  ensure_resource(file, "${serverdir}/etc/system.properties", {
     ensure  => file,
     content => template('karaf/karaf/etc/system.properties.erb'),
     owner   => $service_user_name,
     group   => $service_group_name
-  }
+  })
 }

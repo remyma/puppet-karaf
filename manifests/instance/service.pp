@@ -1,7 +1,7 @@
 # Definition: karaf::instance::service
 define karaf::instance::service(
   $ensure             = $karaf::ensure,
-  $rootdir            = undef,
+  $instance_root      = undef,
   $service_provider   = $karaf::params::service_provider,
   $service_name       = undef,
   $service_user_name  = undef,
@@ -12,7 +12,7 @@ define karaf::instance::service(
     'init': {
       karaf::service::service { $name:
         ensure             => $ensure,
-        rootdir            => $rootdir,
+        instance_root      => $instance_root,
         service_name       => $service_name,
         service_user_name  => $service_user_name,
         service_group_name => $service_group_name,
@@ -21,7 +21,7 @@ define karaf::instance::service(
     'systemd': {
       karaf::service::systemd { $name:
         ensure             => $ensure,
-        rootdir            => $rootdir,
+        instance_root      => $instance_root,
         service_name       => $service_name,
         service_user_name  => $service_user_name,
         service_group_name => $service_group_name,

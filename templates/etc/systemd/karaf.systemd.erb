@@ -5,8 +5,8 @@ Description=Starts and stops karaf instance on this system
 Type=forking
 User=<%= @service_user_name %>
 Group=<%= @service_group_name %>
-ExecStart=<%= @rootdir %>/<%= @service_name %>/bin/start
-ExecStop=<%= @rootdir %>/<%= @service_name %>/bin/stop
+ExecStart=<%= @instance_root %>/current/bin/start
+ExecStop=<%= @instance_root %>/current/bin/stop
 
 # Shutdown delay in seconds, before process is tried to be killed with KILL (if configured)
 TimeoutStopSec=20
