@@ -8,10 +8,17 @@ define karaf::instance::configuration::shell(
   $karaf_ssh_port       = undef,
   $karaf_ssh_host       = undef,
 ) {
-  ensure_resource(file, "${serverdir}/etc/org.apache.karaf.shell.cfg", {
-    ensure  => file,
-    content => template('karaf/karaf/etc/org.apache.karaf.shell.cfg.erb'),
-    owner   => $service_user_name,
-    group   => $service_group_name
+  # Replace rmi registry port.
+  ensure_resource(file_line, "${serverdir}-ssh-port", {
+    path  => "${serverdir}/etc/org.apache.karaf.shell.cfg",
+    line  => "sshPort = ${karaf_ssh_host}",
+    match => "^sshPort =$"
+  })
+
+  # Replace rmi registry port.
+  ensure_resource(file_line, "${serverdir}-ssh-host", {
+    path  => "${serverdir}/etc/org.apache.karaf.shell.cfg",
+    line  => "sshHost = ${karaf_ssh_port}",
+    match => "^sshHost =$"
   })
 }

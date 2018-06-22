@@ -61,12 +61,6 @@ define karaf::instance::configuration(
     karaf_ssh_host     => $karaf_ssh_host,
   }
 
-  karaf::instance::configuration::system { $name:
-    service_user_name  => $service_user_name,
-    serverdir          => $serverdir,
-    service_group_name => $service_group_name,
-  }
-
   karaf::instance::configuration::features { $name:
     service_user_name           => $service_user_name,
     serverdir                   => $serverdir,

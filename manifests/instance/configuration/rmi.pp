@@ -11,11 +11,33 @@ define karaf::instance::configuration::rmi(
   $karaf_rmi_server_port    = undef,
 ) {
 
-  # Deploy ops4j mvn config file.
-  ensure_resource(file, "${serverdir}/etc/org.apache.karaf.management.cfg", {
-    ensure  => file,
-    content => template('karaf/karaf/etc/org.apache.karaf.management.cfg.erb'),
-    owner   => $service_user_name,
-    group   => $service_group_name
+  # Replace rmi registry port.
+  ensure_resource(file_line, "${serverdir}-rmi-registry-port", {
+    path  => "${serverdir}/etc/org.apache.karaf.management.cfg",
+    line  => "rmiRegistryPort = ${karaf_rmi_registry_port}",
+    match => "^rmiRegistryPort =$"
   })
+
+  # Replace rmi registry port.
+  ensure_resource(file_line, "${serverdir}-rmi-registry-host", {
+    path  => "${serverdir}/etc/org.apache.karaf.management.cfg",
+    line  => "rmiRegistryHost = ${karaf_rmi_registry_host}",
+    match => "^rmiRegistryHost =$"
+  })
+
+  # Replace rmi server host.
+  ensure_resource(file_line, "${serverdir}-rmi-server-port", {
+    path  => "${serverdir}/etc/org.apache.karaf.management.cfg",
+    line  => "rmiServerPort = ${karaf_rmi_server_port}",
+    match => "^rmiServerPort =$"
+  })
+
+  # Replace rmi server host.
+  ensure_resource(file_line, "${serverdir}-rmi-server-host", {
+    path  => "${serverdir}/etc/org.apache.karaf.management.cfg",
+    line  => "rmiServerHost = ${karaf_rmi_server_host}",
+    match => "^rmiServerHost =$"
+  })
+
+
 }
