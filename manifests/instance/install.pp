@@ -44,14 +44,14 @@ define karaf::instance::install(
 
       $unzip_require = File[ "${instance_root}/${karaf_file_name}.zip" ]
     } else {
-      ensure_resource('exec', 'donwload_karaf', {
+      ensure_resource('exec', 'download_karaf', {
         command => "/usr/bin/wget -O /tmp/${karaf_file_name}.zip -q \"${karaf_zip_url}\"",
         creates  => "/tmp/${karaf_file_name}.zip",
         timeout => 1000,
         'unless'  => "/usr/bin/test -f /tmp/${karaf_file_name}.zip"
       })
 
-      $unzip_require = Exec['donwload_karaf']
+      $unzip_require = Exec['download_karaf']
     }
 
     ensure_resource('file', "${instance_root}" , {

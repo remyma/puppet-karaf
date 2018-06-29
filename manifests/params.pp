@@ -117,4 +117,24 @@ class karaf::params {
   $karaf_rmi_server_host = '0.0.0.0'
   $karaf_rmi_server_port = 44444
 
+  # ----------------------------------
+  # Karaf configuration files.
+  # ----------------------------------
+  $karaf_configuration_properties = {
+      'org.apache.karaf.shell.cfg' => {
+        "sshHost" => $karaf_ssh_host,
+        "sshPort" => $karaf_ssh_port
+      },
+      'org.apache.karaf.management.cfg' => {
+        "rmiRegistryPort" => $karaf_rmi_registry_port,
+        "rmiRegistryHost" => $karaf_rmi_registry_host,
+        "rmiServerPort"   => $karaf_rmi_server_port,
+        "rmiServerHost"   => $karaf_rmi_server_host
+
+,      },
+      'org.apache.karaf.features.repos.cfg' => $karaf_additional_repos,
+      'users.properties' => $karaf_users_definition,
+      'custom.properties' => $karaf_custom_properties
+  }
+
 }

@@ -15,8 +15,8 @@ define karaf::instance::configuration::setenv(
   each($default_env_vars) |$key, $value| {
     ensure_resource(file_line, "${serverdir}-env-$key", {
       path  => "${serverdir}/bin/setenv",
-      line  => "export ${key} = '${value}'",
-      match => "^export ${key} ="
+      line  => "export ${key}=${value}",
+      match => "^export ${key}="
     })
   }
 }
