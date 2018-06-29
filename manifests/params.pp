@@ -7,7 +7,7 @@ class karaf::params {
   $rootdir            = '/opt'
 
   # Default karaf version to install
-  $version            = '4.0.10'
+  $version            = '4.2.0'
 
   # Value could be 'web' or 'file'. Choose if karaf should be installed from web
   # or from file. If file, please provide zip archive in files directory.
@@ -97,13 +97,9 @@ class karaf::params {
   $file_maven_settings = 'puppet:///modules/karaf/maven/settings.xml'
   $mvn_repositories = [
     'http://repo1.maven.org/maven2@id=central',
-    'http://repository.springsource.com/maven/bundles/release@id=spring.ebr.release',
-    'http://repository.springsource.com/maven/bundles/external@id=spring.ebr.external',
-    'http://zodiac.springsource.com/maven/bundles/release@id=gemini',
     'http://repository.apache.org/content/groups/snapshots-group@id=apache@snapshots@noreleases',
     'https://oss.sonatype.org/content/repositories/snapshots@id=sonatype.snapshots.deploy@snapshots@noreleases',
-    'https://oss.sonatype.org/content/repositories/ops4j-snapshots@id=ops4j.sonatype.snapshots.deploy@snapshots@noreleases',
-    'http://repository.springsource.com/maven/bundles/external@id=spring-ebr-repository@snapshots@noreleases'
+    'https://oss.sonatype.org/content/repositories/ops4j-snapshots@id=ops4j.sonatype.snapshots.deploy@snapshots@noreleases'
   ]
 
   # ----------------------------------

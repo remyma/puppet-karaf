@@ -21,10 +21,10 @@
 # Comma separated list of features repositories to register by default
 #
 featuresRepositories = \
+    mvn:org.apache.karaf.features/enterprise/<%= @karaf_version %>/xml/features, \
     mvn:org.apache.karaf.features/standard/<%= @karaf_version %>/xml/features, \
-    mvn:org.apache.karaf.features/spring/<%= @karaf_version %>/xml/features, \
     mvn:org.apache.karaf.features/framework/<%= @karaf_version %>/xml/features, \
-    mvn:org.apache.karaf.features/enterprise/<%= @karaf_version %>/xml/features<%= ', \\' if @karaf_startup_feature_repos.size > 0 %>
+    mvn:org.apache.karaf.features/spring/<%= @karaf_version %>/xml/features<%= ', \\' if @karaf_startup_feature_repos.size > 0 %>
     <% @karaf_startup_feature_repos.each_with_index do |repo, i| -%>
     <%= repo %><%= ', \\' if i < (@karaf_startup_feature_repos.size - 1) %>
     <% end -%>
@@ -33,25 +33,24 @@ featuresRepositories = \
 # Comma separated list of features to install at startup
 #
 featuresBoot = \
-    instance, \
-    package, \
-    log, \
-    ssh, \
-    aries-blueprint, \
-    framework, \
-    system, \
-    feature, \
-    shell, \
-    management, \
-    service, \
-    jaas, \
-    shell-compat, \
-    deployer, \
-    diagnostic, \
-    wrap, \
-    bundle, \
-    config, \
-    kar<%= ', \\' if @karaf_startup_feature_boots.size > 0 %>
+    instance/<%= @karaf_version %>, \
+    package/<%= @karaf_version %>, \
+    log/<%= @karaf_version %>, \
+    ssh/<%= @karaf_version %>, \
+    framework/<%= @karaf_version %>, \
+    system/<%= @karaf_version %>, \
+    eventadmin/<%= @karaf_version %>, \
+    feature/<%= @karaf_version %>, \
+    shell/<%= @karaf_version %>, \
+    management/<%= @karaf_version %>, \
+    service/<%= @karaf_version %>, \
+    jaas/<%= @karaf_version %>, \
+    deployer/<%= @karaf_version %>, \
+    diagnostic/<%= @karaf_version %>, \
+    wrap/2.5.4, \
+    bundle/<%= @karaf_version %>, \
+    config/<%= @karaf_version %>, \
+    kar/<%= @karaf_version %><%= ', \\' if @karaf_startup_feature_boots.size > 0 %>
     <% @karaf_startup_feature_boots.each_with_index do |feature, i| -%>
     <%= feature %><%= ', \\' if i < (@karaf_startup_feature_boots.size - 1) %>
     <% end -%>
@@ -91,3 +90,12 @@ featuresBootAsynchronous=false
 # Store cfg file for config element in feature
 #
 #configCfgStore=true
+
+#
+# Configuration of features processing mechanism (overrides, blacklisting, modification of features)
+# XML file defines instructions related to features processing
+# versions.properties may declare properties to resolve placeholders in XML file
+# both files are relative to ${karaf.etc}
+#
+#featureProcessing=org.apache.karaf.features.xml
+#featureProcessingVersions=versions.properties

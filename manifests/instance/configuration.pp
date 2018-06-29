@@ -24,12 +24,14 @@ define karaf::instance::configuration(
 
   $serverdir = "${instance_root}/current"
 
-  karaf::instance::configuration::maven { $name:
-    serverdir           => $serverdir,
-    service_user_name   => $service_user_name,
-    service_group_name  => $service_group_name,
-    file_maven_settings => $file_maven_settings,
-    mvn_repositories    => $mvn_repositories
+  if size($mvn_repositories) > 0 {
+    karaf::instance::configuration::maven { $name:
+      serverdir           => $serverdir,
+      service_user_name   => $service_user_name,
+      service_group_name  => $service_group_name,
+      file_maven_settings => $file_maven_settings,
+      mvn_repositories    => $mvn_repositories
+    }
   }
 
   karaf::instance::configuration::custom_properties { $name:
@@ -54,14 +56,18 @@ define karaf::instance::configuration(
     karaf_ssh_host     => $karaf_ssh_host,
   }
 
-  karaf::instance::configuration::features { $name:
-    service_user_name           => $service_user_name,
-    serverdir                   => $serverdir,
-    service_group_name          => $service_group_name,
-    karaf_version               => $karaf_version,
-    karaf_startup_feature_repos => $karaf_startup_feature_repos,
-    karaf_startup_feature_boots => $karaf_startup_feature_boots,
+
+  if size($karaf_startup_feature_repos) > 0 or size($karaf_startup_feature_boots) > 0 {
+    karaf::instance::configuration::features { $name:
+      service_user_name           => $service_user_name,
+      serverdir                   => $serverdir,
+      service_group_name          => $service_group_name,
+      karaf_version               => $karaf_version,
+      karaf_startup_feature_repos => $karaf_startup_feature_repos,
+      karaf_startup_feature_boots => $karaf_startup_feature_boots,
+    }
   }
+
 
   karaf::instance::configuration::logging { $name:
     service_user_name  => $service_user_name,
