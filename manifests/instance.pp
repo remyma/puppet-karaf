@@ -26,6 +26,7 @@ define karaf::instance (
   $karaf_rmi_registry_port      = $karaf::params::karaf_rmi_registry_port,
   $karaf_rmi_server_host        = $karaf::params::karaf_rmi_server_host,
   $karaf_rmi_server_port        = $karaf::params::karaf_rmi_server_port,
+  $karaf_additional_repos       = $karaf::params::karaf_additional_repos,
 ) {
 
   # ---------------------------------------------
@@ -82,6 +83,7 @@ define karaf::instance (
       karaf_rmi_registry_port     => $karaf_rmi_registry_port,
       karaf_rmi_server_host       => $karaf_rmi_server_host,
       karaf_rmi_server_port       => $karaf_rmi_server_port,
+      karaf_additional_repos      => $karaf_additional_repos,
     }
   }
 

@@ -19,6 +19,7 @@ define karaf::instance::configuration(
   $karaf_rmi_registry_port      = undef,
   $karaf_rmi_server_host        = undef,
   $karaf_rmi_server_port        = undef,
+  $karaf_additional_repos       = undef,
 ) {
 
   $serverdir = "${instance_root}/current"
@@ -75,5 +76,10 @@ define karaf::instance::configuration(
     karaf_rmi_registry_port => $karaf_rmi_registry_port,
     karaf_rmi_server_host   => $karaf_rmi_server_host,
     karaf_rmi_server_port   => $karaf_rmi_server_port,
+  }
+
+  karaf::instance::configuration::additional_repos { $name:
+    serverdir               => $serverdir,
+    karaf_additional_repos => $karaf_additional_repos
   }
 }
