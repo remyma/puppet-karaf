@@ -33,30 +33,22 @@ define karaf::instance::configuration(
 
   karaf::instance::configuration::custom_properties { $name:
     serverdir               => $serverdir,
-    service_user_name       => $service_user_name,
-    service_group_name      => $service_group_name,
     karaf_custom_properties => $karaf_custom_properties
   }
 
   karaf::instance::configuration::users_definition { $name:
     serverdir               => $serverdir,
-    service_user_name       => $service_user_name,
-    service_group_name      => $service_group_name,
     karaf_users_definition  => $karaf_users_definition
   }
 
   karaf::instance::configuration::setenv { $name:
-    service_user_name  => $service_user_name,
     serverdir          => $serverdir,
-    service_group_name => $service_group_name,
     java_home          => $java_home,
     default_env_vars   => $default_env_vars,
   }
 
   karaf::instance::configuration::shell { $name:
-    service_user_name  => $service_user_name,
     serverdir          => $serverdir,
-    service_group_name => $service_group_name,
     karaf_ssh_port     => $karaf_ssh_port,
     karaf_ssh_host     => $karaf_ssh_host,
   }
@@ -79,8 +71,6 @@ define karaf::instance::configuration(
 
   karaf::instance::configuration::rmi { $name:
     serverdir               => $serverdir,
-    service_user_name       => $service_user_name,
-    service_group_name      => $service_group_name,
     karaf_rmi_registry_host => $karaf_rmi_registry_host,
     karaf_rmi_registry_port => $karaf_rmi_registry_port,
     karaf_rmi_server_host   => $karaf_rmi_server_host,
