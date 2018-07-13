@@ -2,7 +2,7 @@
 define karaf::instance::install(
   $ensure             = undef,
   $install_from       = undef,
-  $rootdir            = undef,
+  $instance_root      = undef,
   $service_name       = undef,
   $service_group_name = undef,
   $service_group_id   = undef,
@@ -42,32 +42,38 @@ define karaf::instance::install(
         group   => $service_group_name
       })
 
-      $unzip_require = File[ "${rootdir}/${karaf_file_name}.zip" ]
+      $unzip_require = File[ "${instance_root}/${karaf_file_name}.zip" ]
     } else {
-      ensure_resource('exec', 'donwload_karaf', {
+      ensure_resource('exec', 'download_karaf', {
         command => "/usr/bin/wget -O /tmp/${karaf_file_name}.zip -q \"${karaf_zip_url}\"",
         creates  => "/tmp/${karaf_file_name}.zip",
-        timeout => 1000
+        timeout => 1000,
+        'unless'  => "/usr/bin/test -f /tmp/${karaf_file_name}.zip"
       })
 
-      $unzip_require = Exec['donwload_karaf']
+      $unzip_require = Exec['download_karaf']
     }
+
+    ensure_resource('file', "${instance_root}" , {
+      ensure              => "directory",
+      owner               => $service_user_name,
+      group               => $service_group_name,
+    })
+
 
     ensure_resource('exec', "${service_name}-unzip_karaf_package", {
       cwd       => "/home/${service_user_name}",
-      command   => "/usr/bin/unzip /tmp/${karaf_file_name}.zip -d ${rootdir}",
+      command   => "/usr/bin/unzip /tmp/${karaf_file_name}.zip -d ${instance_root}/releases",
       require   => [ $unzip_require ],
-      'unless'  => "/usr/bin/test -d ${rootdir}/${karaf_file_name}"
+      'unless'  => "/usr/bin/test -d ${instance_root}/releases/${karaf_file_name}"
     })
 
   }
 
-  ensure_resource('file', "${rootdir}/${karaf_file_name}-${service_name}" , {
+  ensure_resource('file', "${instance_root}/releases/${karaf_file_name}" , {
     ensure              => $ensure,
     owner               => $service_user_name,
     group               => $service_group_name,
-    source              => "${rootdir}/${karaf_file_name}",
-    source_permissions  => 'use',
     recurse             => true,
     replace             => false
   })
@@ -78,9 +84,9 @@ define karaf::instance::install(
     $link_ensure = 'link'
   }
 
-  ensure_resource('file', "${rootdir}/${service_name}", {
+  ensure_resource('file', "${instance_root}/current", {
     ensure  => $link_ensure,
-    target  => "${rootdir}/${karaf_file_name}-${service_name}/",
+    target  => "${instance_root}/releases/${karaf_file_name}/",
     owner   => $service_user_name,
     group   => $service_group_name,
     replace => false

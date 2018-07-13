@@ -17,7 +17,7 @@ TOUCH=/bin/touch
 NAME=$( basename -- $0 )
 DESC="Apache Karaf"
 
-KARAF_ROOT=<%= @rootdir %>/<%= @service_name %>
+KARAF_ROOT=<%= @instance_root %>/current
 KARAF_USER=<%= @service_user_name %>
 
 START_DAEMON=${KARAF_ROOT}/bin/start

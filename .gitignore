@@ -18,3 +18,5 @@ Puppetfile.lock
 .librarian
 .tmp
 modules
+
+.idea

@@ -12,6 +12,7 @@
     * [Setup requirements](#setup-requirements)
     * [Beginning with karaf](#beginning-with-karaf)
 3. [Usage - Configuration options and additional functionality](#usage)
+    * [How to install a single Karaf instance](#how-to-install-a-single-karaf-instance)
     * [How to manage multiple karaf instances](#how-to-manage-multiple-karaf-instances)
     * [How to remove a karaf instance](#how-to-remove-a-karaf-instance)
 4. [Reference](#reference)
@@ -36,13 +37,14 @@
         * [mvn_repositories](#mvnrepositories)
         * [file_maven_settings](#filemavensettings)
         * [file_karaf_logging](#filekaraflogging)
+        * [karaf_configuration_properties](#karafconfigurationproperties)
 
 
 ## Description
 
-This module sets up Karaf instances.
+This module can be used to set up a single or multiple Karaf instances.
 
-Current version used by this module is Karaf 4.0.10.
+Current version tested by this module is Karaf 4.2.0.
 
 ## Setup
 
@@ -67,6 +69,8 @@ class { 'karaf':
 ```
 
 ## Usage
+
+### How to install a single Karaf instance
 
 * Installation, make sure service is running and will be started at boot time :
 
@@ -101,20 +105,39 @@ class { 'karaf':
    file_maven_settings   => 'puppet:///modules/karaf_is/maven/settings.xml'
 }
 ```
+### How to configure a Karaf instance
+
+You can configure your karaf instance by using parameters : 
+check [reference section](#reference) to know all available parameters.
 
 ### How to manage multiple karaf instances
+
+If you want to install several karaf instances, just provide an array of instances you want to create.
+You have to fulfill `karaf_configuration_properties` property to specify different ports for the instances.
 
 ```puppet
 $karaf_instances = {
   'instance1' => {
-    karaf_ssh_port          => 8101,
-    karaf_rmi_registry_port => 1099,
-    karaf_rmi_server_port   => 44444,
+    karaf_configuration_properties => {
+      'org.apache.karaf.shell.cfg'      => {
+        "sshPort" => 8101
+      },
+      'org.apache.karaf.management.cfg' => {
+        "rmiRegistryPort" => 1099,
+        "rmiServerPort"   => 44444,
+      },
+    },
   },
-  'instance2'  => {
-    karaf_ssh_port          => 8102,
-    karaf_rmi_registry_port => 1098,
-    karaf_rmi_server_port   => 44445,
+  'instance2' => {
+    karaf_configuration_properties => {
+      'org.apache.karaf.shell.cfg' => {
+        "sshPort" => 8102
+      },
+      'org.apache.karaf.management.cfg' => {
+        "rmiRegistryPort" => 1098,
+        "rmiServerPort"   => 44445,
+      },
+    }
   },
 }
 
@@ -244,3 +267,20 @@ All parameters are optional.
 #### file_karaf_logging
 
  String. Path of file to override karaf logging.
+ 
+#### karaf configuration properties
+
+ Array. List of configuration files (from karaf etc folder) with associated properties to override. 
+ Only works with single line value properties
+ 
+ ```puppet
+ karaf_configuration_properties => {
+   'org.apache.karaf.shell.cfg'      => {
+     "sshPort" => 8101
+   },
+   'org.apache.karaf.management.cfg' => {
+     "rmiRegistryPort" => 1099,
+     "rmiServerPort"   => 44444,
+   },
+ },
+```

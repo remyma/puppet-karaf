@@ -26,6 +26,8 @@ define karaf::instance (
   $karaf_rmi_registry_port      = $karaf::params::karaf_rmi_registry_port,
   $karaf_rmi_server_host        = $karaf::params::karaf_rmi_server_host,
   $karaf_rmi_server_port        = $karaf::params::karaf_rmi_server_port,
+  $karaf_additional_repos       = $karaf::params::karaf_additional_repos,
+  $karaf_configuration_properties = $karaf::params::karaf_configuration_properties,
 ) {
 
   # ---------------------------------------------
@@ -46,10 +48,12 @@ define karaf::instance (
 
   $_service_name = pick($service_name, $name)
 
+  $_instance_root = "${rootdir}/${name}"
+
   karaf::instance::install { $name:
     ensure             => $ensure,
     install_from       => $install_from,
-    rootdir            => $rootdir,
+    instance_root      => $_instance_root,
     service_name       => $_service_name,
     service_group_name => $service_group_name,
     service_group_id   => $service_group_id,
@@ -61,31 +65,23 @@ define karaf::instance (
 
   if ($ensure == 'present') {
     karaf::instance::configuration { $name:
-      rootdir                     => $rootdir,
+      instance_root               => $_instance_root,
       service_user_name           => $service_user_name,
       service_group_name          => $service_group_name,
       file_maven_settings         => $file_maven_settings,
       mvn_repositories            => $mvn_repositories,
-      file_karaf_logging          => $file_karaf_logging,
-      karaf_custom_properties     => $karaf_custom_properties,
-      karaf_users_definition      => $karaf_users_definition,
       java_home                   => $java_home,
       default_env_vars            => $default_env_vars,
       karaf_version               => $karaf_version,
       karaf_startup_feature_repos => $karaf_startup_feature_repos,
       karaf_startup_feature_boots => $karaf_startup_feature_boots,
-      karaf_ssh_port              => $karaf_ssh_port,
-      karaf_ssh_host              => $karaf_ssh_host,
-      karaf_rmi_registry_host     => $karaf_rmi_registry_host,
-      karaf_rmi_registry_port     => $karaf_rmi_registry_port,
-      karaf_rmi_server_host       => $karaf_rmi_server_host,
-      karaf_rmi_server_port       => $karaf_rmi_server_port,
+      karaf_configuration_properties => $karaf_configuration_properties,
     }
   }
 
   karaf::instance::service { $name:
     ensure             => $ensure,
-    rootdir            => $rootdir,
+    instance_root      => $_instance_root,
     service_name       => $_service_name,
     service_user_name  => $service_user_name,
     service_group_name => $service_group_name,
