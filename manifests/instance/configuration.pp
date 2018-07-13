@@ -31,7 +31,7 @@ define karaf::instance::configuration(
     default_env_vars   => $default_env_vars,
   }
 
-  $karaf_configuration_properties.each |String $config_file, Hash $properties| {
+  $karaf_configuration_properties.each |String $config_file, $properties| {
     $properties.each |String $key, $value| {
       ensure_resource(file_line, "${serverdir}-${config_file}-${key}", {
         path  => "${serverdir}/etc/${config_file}",

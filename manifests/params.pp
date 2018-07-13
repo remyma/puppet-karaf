@@ -129,9 +129,8 @@ class karaf::params {
         "rmiRegistryPort" => $karaf_rmi_registry_port,
         "rmiRegistryHost" => $karaf_rmi_registry_host,
         "rmiServerPort"   => $karaf_rmi_server_port,
-        "rmiServerHost"   => $karaf_rmi_server_host
-
-,      },
+        "rmiServerHost"   => $karaf_rmi_server_host,
+      },
       'org.apache.karaf.features.repos.cfg' => $karaf_additional_repos,
       'users.properties' => $karaf_users_definition,
       'custom.properties' => $karaf_custom_properties
