@@ -9,11 +9,11 @@ define karaf::instance::configuration::setenv(
   ensure_resource(file_line, "${serverdir}-env-JAVA_HOME", {
     path  => "${serverdir}/bin/setenv",
     line  => "export JAVA_HOME = \"${java_home}\"",
-    match => "^export JAVA_HOME ="
+    match => '^export JAVA_HOME ='
   })
 
   each($default_env_vars) |$key, $value| {
-    ensure_resource(file_line, "${serverdir}-env-$key", {
+    ensure_resource(file_line, "${serverdir}-env-${key}", {
       path  => "${serverdir}/bin/setenv",
       line  => "export ${key}=${value}",
       match => "^export ${key}="

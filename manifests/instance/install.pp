@@ -54,8 +54,8 @@ define karaf::instance::install(
       $unzip_require = Exec['download_karaf']
     }
 
-    ensure_resource('file', "${instance_root}" , {
-      ensure              => "directory",
+    ensure_resource('file', "root-${instance_root}" , {
+      ensure              => 'directory',
       owner               => $service_user_name,
       group               => $service_group_name,
     })

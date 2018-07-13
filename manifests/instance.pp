@@ -65,16 +65,16 @@ define karaf::instance (
 
   if ($ensure == 'present') {
     karaf::instance::configuration { $name:
-      instance_root               => $_instance_root,
-      service_user_name           => $service_user_name,
-      service_group_name          => $service_group_name,
-      file_maven_settings         => $file_maven_settings,
-      mvn_repositories            => $mvn_repositories,
-      java_home                   => $java_home,
-      default_env_vars            => $default_env_vars,
-      karaf_version               => $karaf_version,
-      karaf_startup_feature_repos => $karaf_startup_feature_repos,
-      karaf_startup_feature_boots => $karaf_startup_feature_boots,
+      instance_root                  => $_instance_root,
+      service_user_name              => $service_user_name,
+      service_group_name             => $service_group_name,
+      file_maven_settings            => $file_maven_settings,
+      mvn_repositories               => $mvn_repositories,
+      java_home                      => $java_home,
+      default_env_vars               => $default_env_vars,
+      karaf_version                  => $karaf_version,
+      karaf_startup_feature_repos    => $karaf_startup_feature_repos,
+      karaf_startup_feature_boots    => $karaf_startup_feature_boots,
       karaf_configuration_properties => $karaf_configuration_properties,
     }
   }

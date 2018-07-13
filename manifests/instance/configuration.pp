@@ -26,9 +26,9 @@ define karaf::instance::configuration(
   }
 
   karaf::instance::configuration::setenv { $name:
-    serverdir          => $serverdir,
-    java_home          => $java_home,
-    default_env_vars   => $default_env_vars,
+    serverdir        => $serverdir,
+    java_home        => $java_home,
+    default_env_vars => $default_env_vars,
   }
 
   $karaf_configuration_properties.each |String $config_file, $properties| {
