@@ -7,7 +7,7 @@ class karaf::params {
   $rootdir            = '/opt'
 
   # Default karaf version to install
-  $version            = '4.2.0'
+  $version            = '4.2.1'
 
   # Value could be 'web' or 'file'. Choose if karaf should be installed from web
   # or from file. If file, please provide zip archive in files directory.
